@@ -1,0 +1,28 @@
+app-template-dialog {
+    //修改头部标题中icon的样式
+    .dialog-icon {
+        display: inline;
+    }
+    //修改确认和取消按钮的位置
+    .dialog-actions {
+        display: flex;
+        justify-content: flex-end !important;
+        margin-top: 10px;
+        button {
+            margin: 0 5px 0 10px !important;
+        }
+    }
+
+    .dialog-header {
+        display: flex;
+        .title {
+            margin:-2px 0 0 5px;
+        }
+    }
+    min-width: 300px !important;
+    max-width: 400px !important;
+    display:block;
+    .mat-dialog-content{
+        max-height: 100px !important;
+    }
+}

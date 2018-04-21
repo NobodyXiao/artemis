@@ -1,0 +1,9 @@
+<app-template-dialog  [title]="title" [message]="message">
+  <div class="dialog-icon">
+    <mat-icon>help</mat-icon>
+  </div>
+  <div class="dialog-actions">
+    <button type="button" mat-raised-button (click)="dialogRef.close(true)" color="primary">OK</button>
+    <button type="button" mat-raised-button (click)="dialogRef.close(false)" color="warn">Cancel</button>
+  </div>
+</app-template-dialog>

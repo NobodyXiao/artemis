@@ -1,0 +1,57 @@
+ mat-card {
+  max-width: 432px;
+  width:50%;
+  margin: auto;
+  text-align: center;
+  height: 460px;
+  position: absolute;  
+  top: 0; 
+  left: 0; 
+  bottom: 0; 
+  right: 0;  
+}
+mat-card-subtitle{
+  height:30%;
+  width:100%;
+  background: greenyellow;
+}
+mat-card-content{
+  height:40%;
+  width:100%;
+}
+mat-card-content form{
+  height:80%;
+  width:100%;
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
+}
+mat-card-content form mat-form-field{
+  margin:5px 20px;
+}
+.login-btn,.register-btn{
+  width:calc(100% - 40px);
+  margin: 10px auto;
+}
+.login-btn button{
+  width:100%;
+}
+.register-btn button{
+  width:100%;
+}
+.switch-box{
+  position:relative;
+  text-align: center;
+}
+.switch-box span{
+  color: #175199;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 720px) {
+  mat-card {
+    width: 80%;
+    margin: 2em auto;
+    text-align: center;
+  }
+}
