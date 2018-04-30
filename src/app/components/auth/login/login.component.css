@@ -16,7 +16,7 @@ mat-card-subtitle{
   background: greenyellow;
 }
 mat-card-content{
-  height:40%;
+  height:50%;
   width:100%;
 }
 mat-card-content form{

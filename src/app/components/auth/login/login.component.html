@@ -4,19 +4,20 @@
     <mat-card-subtitle color="primary">
       
     </mat-card-subtitle>
-    <mat-card-content>
+    <div style="color: #f44336;font-size:14px;text-align: left;margin:2px 20px;">{{error}}</div>
+    <mat-card-content style="max-height: 180px;">
       <form [formGroup]="loginForm">
           <mat-form-field >
-            <input matInput placeholder="请输入邮箱" formControlName="username" [(ngModel)]="loginForm.username">
+            <input matInput required placeholder="请输入用户名" formControlName="username" [(ngModel)]="loginAccount.username">
             <mat-hint *ngIf="errorDataForLogin.username"  style="color: #f44336;">{{errorDataForLogin.username}}</mat-hint>
           </mat-form-field>
 
         <mat-form-field>
-          <input matInput type="password" formControlName="password" placeholder="请输入密码" [(ngModel)]="loginForm.password">
+          <input matInput required type="password" formControlName="password" placeholder="请输入密码" [(ngModel)]="loginAccount.password">
           <mat-hint *ngIf="errorDataForLogin.password"  style="color: #f44336;">{{errorDataForLogin.password}}</mat-hint>
         </mat-form-field>
         <div class="login-btn">
-            <button mat-raised-button color="primary" (click)="clickLogin()">登陆</button>
+            <button mat-raised-button color="primary" (click)="clickLogin(loginAccount)" [disabled]="!loginForm.valid || isRequesting">登陆</button>
         </div>
       </form>
     </mat-card-content>
@@ -31,19 +32,26 @@
       <mat-card-subtitle color="primary">
       
         </mat-card-subtitle>
-    <mat-card-content>
+    <mat-card-content style="min-height:250px;">
       <form [formGroup]="registerForm">
+        <!-- 用户名 -->
         <mat-form-field>
-          <input matInput required placeholder="请输入邮箱" formControlName="username" [(ngModel)]="registerForm.loginname" maxlength="60">
+          <input matInput required placeholder="请输入用户名" formControlName="username" [(ngModel)]="registerAccount.username" maxlength="60">
           <mat-hint *ngIf="errorDataForRegister.username"  style="color: #f44336;">{{errorDataForRegister.username}}</mat-hint>
         </mat-form-field>
+        <!-- 邮箱 -->
         <mat-form-field>
-          <input matInput required type="password" formControlName="password" placeholder="请输入密码" [(ngModel)]="registerForm.password"
+          <input matInput required placeholder="请输入邮箱" formControlName="email" [(ngModel)]="registerAccount.email" maxlength="60">
+          <mat-hint *ngIf="errorDataForRegister.email"  style="color: #f44336;">{{errorDataForRegister.email}}</mat-hint>
+        </mat-form-field>
+        <!-- 密码 -->
+        <mat-form-field>
+          <input matInput required type="password" formControlName="password" placeholder="请输入密码" [(ngModel)]="registerAccount.password"
             maxlength="32">
           <mat-hint *ngIf="errorDataForRegister.password"  style="color: #f44336;">{{errorDataForRegister.password}}</mat-hint>
         </mat-form-field>
         <div class="register-btn">
-          <button mat-raised-button color="primary" (click)="switchModel">注册</button>
+          <button mat-raised-button color="primary" (click)="clickRegister(registerAccount)" [disabled]="!registerForm.valid || isRequestingForReg">注册</button>
         </div>
       </form>
     </mat-card-content>

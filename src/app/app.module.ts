@@ -1,17 +1,28 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { Http, HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
-import { LoginComponent } from './components/auth/login/login.component';
 import { RouterModule, Routes } from '@angular/router';
 import { AppRoutingModule } from './app-routing.module';
 import {MaterialModule} from './material.module';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { APP_CONFIG, APP_DI_CONFIG } from './app-config';
+import { AuthHttp, AuthConfig } from 'angular2-jwt';
+import { HttpClientModule } from '@angular/common/http';
+import { HomepageComponent } from './components/home-page/homepage/homepage.component';
+import { CanDeactivateGuard } from '../app/guards/can-deactivate.guard';
+import { AuthGuard } from '../app/guards/auth-guard.service';
+
+export function authHttpServiceFactory(http: Http) {
+  return new AuthHttp(new AuthConfig({tokenName: 'jwt', noJwtError: true}), http);
+}
+
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent,
+    HomepageComponent,
   ],
   imports: [
     BrowserModule,
@@ -20,8 +31,18 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
     AppRoutingModule,
     MaterialModule,
     BrowserAnimationsModule,
+    HttpModule,
   ],
-  providers: [],
+  providers: [
+    {provide: APP_CONFIG, useValue: APP_DI_CONFIG },
+    {
+      provide: AuthHttp,
+      useFactory: authHttpServiceFactory,
+      deps: [Http]
+    },
+    CanDeactivateGuard,
+    AuthGuard,
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
