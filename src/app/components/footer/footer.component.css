@@ -1,0 +1,13 @@
+.wrap{
+  background-color: #001e50;
+  color: #a3a9b5;
+  background: lightblue;
+  height:150px;
+  min-width:1100px;
+  margin:0;
+}
+@media screen and (max-width: 720px) {
+  .wrap{
+    min-width: 100%;
+  }
+}

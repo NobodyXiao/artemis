@@ -1,0 +1,16 @@
+.app-component{
+  height:100%;
+  width:auto;
+}
+app-content-list{
+  display:flex;
+  flex-direction: row;
+  justify-content:space-between;
+  min-height:calc(100% - 224px);
+  height:auto;
+  width:100%;
+  background:pink;
+  margin:0px;
+}
+
+

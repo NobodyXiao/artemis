@@ -3,12 +3,11 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { AuthGuard } from './guards/auth-guard.service';
 import {LoginComponent} from '../app/components/auth/login/login.component';
-import { HomepageComponent } from '../app/components/home-page/homepage/homepage.component';
+import { FrameworkComponent } from '../app/components/home-page/framework/framework.component';
 const APP_ROUTES: Routes = [
     {
       path: '',
-      // component: LoginComponent,
-      component: HomepageComponent,
+      component: FrameworkComponent,
       canActivate: [AuthGuard],
       canActivateChild: [AuthGuard]
     },

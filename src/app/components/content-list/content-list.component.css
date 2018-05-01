@@ -1,0 +1,32 @@
+
+[class^="content"]{
+  float:left;
+  min-height:100%;
+  height:auto;
+  width:auto;
+}
+.content-left{
+  min-width:300px;
+  background:#eee;
+}
+.content-right{
+  min-width:300px;
+  background:#eee;
+}
+.content-center{
+  width:calc(100% - 600px);
+  min-width:500px;
+  min-height:100%;
+  background:lightgreen;
+  padding:20px 0;
+}
+@media screen and (max-width: 720px) {
+  .content-left, .content-right{
+    display:none;
+  }
+  .content-center{
+    min-width:100%;
+    max-width:100%;
+    background:lightgreen;
+  }
+}

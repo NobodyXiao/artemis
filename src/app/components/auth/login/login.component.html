@@ -1,8 +1,8 @@
 <!-- 登陆 -->
-<div>
+<div class="card-wrap">
   <mat-card *ngIf="isLogin">
-    <mat-card-subtitle color="primary">
-      
+    <mat-card-subtitle color="primary" style="min-height:30px;margin-top:20px">
+      image
     </mat-card-subtitle>
     <div style="color: #f44336;font-size:14px;text-align: left;margin:2px 20px;">{{error}}</div>
     <mat-card-content style="max-height: 180px;">
@@ -28,10 +28,10 @@
     </div>
   </mat-card>
   <!-- 注册 -->
-  <mat-card *ngIf="!isLogin">
-      <mat-card-subtitle color="primary">
-      
-        </mat-card-subtitle>
+  <mat-card *ngIf="!isLogin"> 
+    <mat-card-subtitle color="primary" style="min-height:30px;margin-top:20px">
+      image
+    </mat-card-subtitle>
     <mat-card-content style="min-height:250px;">
       <form [formGroup]="registerForm">
         <!-- 用户名 -->
