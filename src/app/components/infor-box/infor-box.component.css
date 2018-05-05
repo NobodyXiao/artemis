@@ -1,4 +1,13 @@
 
+.infor-box{
+  width:90%; 
+  height:auto;
+  margin:0 auto;
+  overflow: hidden;
+  border-bottom: 1px solid #e5e5e5; 
+  padding: 10px 0;
+  position:relative;
+}
 .img-box{
   min-width: 158px;
   height:auto;
@@ -9,41 +18,95 @@
 .img-box img{
   width:158px;
   height:102px;
+  vertical-align: middle;
 }
 .text-box{
-  /* float: left; */
-  width:calc(100% - 158px);
+  width:calc(100% - 171px);
   height:auto;
-  margin-left:158px;
+  margin-left:171px;
+  
 }
-.instruction{
-  /* line-height: 24px; */
-  /* display: box; */
-  /* -webkit-box-orient: vertical;
-  -webkit-line-clamp: 3;
-  overflow: hidden;
-  text-overflow:ellipsis;
-  white-space: nowrap;
-  font-size: 14px;
-  margin: 0;
-  padding: 0; */
-  position: relative; 
-  line-height: 20px; 
-  max-height: 40px;
-  overflow: hidden;
+.text-box>.instruction{
+  max-height: 48px;
   margin: 0;
   padding: 0;
   font-size: 14px;
   font-weight: normal;
+  -webkit-margin-before: 1em;
+  -webkit-margin-after: 1em;
+  -webkit-margin-start: 0px;
+  -webkit-margin-end: 0px;
+  cursor: pointer;
+  -webkit-font-smoothing: antialiased;
 }
-.instruction::after{
-  content: "..."; 
-  position: absolute; 
-  bottom: 0; 
-  right: 0; 
-  padding-left: 40px;    
-  background: -webkit-linear-gradient(left, transparent, #fff 55%);    
-  background: -o-linear-gradient(rightright, transparent, #fff 55%);    
-  background: -moz-linear-gradient(rightright, transparent, #fff 55%);    
-  background: linear-gradient(to rightright, transparent, #fff 55%); 
+.subinfo-box{
+  height: 20px;
+  width:calc(100% - 171px);
+  position:absolute;
+  bottom:10px;
+  left:171px;
+  line-height: 20px;
+  margin-top: 10px;
+  margin-right:1.16em;
+  margin-bottom:1.16em;
+  font-size: 12px;
+}
+.subinfo-box a{
+  cursor: pointer;
+}
+.subinfo-box-right{
+  float: right;
+  padding: 0 2px 0 8px;
+  height: 20px;
+  line-height: 20px;
+  font-size: 12px;
+  cursor: pointer;
+  -webkit-font-smoothing: antialiased;  
+}
+subinfo-box-right:not(3){
+  border-right:1px solid #eee;
+}
+.subinfo-box-right>em:last-child{
+  font-style: normal;
+  font-weight: normal;
+  color: #808080;
+  vertical-align: middle;
+}
+.subinfo-box-right>em:first-child>img{
+  height:18px;
+  vertical-align: middle;
+}
+@media screen and (max-width: 560px) {
+  .img-box{
+    min-width: 96px;
+    height:auto;
+    margin-right: 8px;
   }
+  .img-box img{
+    width:96px;
+    height:63px;
+    vertical-align: middle;
+  }
+  .text-box{
+    width:calc(100% - 104px);
+    height:auto;
+    margin-left:104px;
+  }
+  .subinfo-box{
+    width:calc(100% - 104px);
+    position:absolute;
+    left:104px;
+  }
+  .text-box>.instruction{
+    -webkit-margin-before: 0px;
+    -webkit-margin-after: 0px;
+    -webkit-margin-start: 0px;
+    -webkit-margin-end: 0px;
+  }
+  .subinfo-box-right{
+    display:none;
+  }
+  .subinfo-box{
+    margin:0;
+  }
+}

@@ -12,5 +12,23 @@ app-content-list{
   background:pink;
   margin:0px;
 }
+@media screen and (max-width: 720px) {
+  app-footer{
+    display:none;
+    height:0;
+  }
+  app-content-list{
+    min-height:calc(100% - 64px);
+  }
+}
+@media screen and (min-width: 720px) and (max-width: 830px) {
+  app-footer{
+    display:none;
+    height:0;
+  }
+  app-content-list{
+    min-height:calc(100% - 64px);
+  }
+}
 
 

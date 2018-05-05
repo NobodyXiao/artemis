@@ -10,15 +10,12 @@ import {
 
 const mergeToken = (options: RequestOptionsArgs = {}) => { 
   const newOptions = new RequestOptions({}).merge(options);
-  console.log('111',newOptions);
   const newHeaders = new Headers(newOptions.headers);
-  console.log('222',newHeaders);
   const jwt = localStorage.getItem('jwt');
   if (jwt) {
     newHeaders.set('Authorization', `Bearer ${jwt}`);
   }
   newOptions.headers = newHeaders;
-  console.log('333',newHeaders);
   return newOptions;
 };
 

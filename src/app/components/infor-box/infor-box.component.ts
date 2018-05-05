@@ -6,10 +6,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./infor-box.component.css']
 })
 export class InforBoxComponent implements OnInit {
-
+  isclickLick:boolean = false;
   constructor() { }
 
   ngOnInit() {
   }
-
+  markLick(){
+    this.isclickLick = !this.isclickLick;
+  }
 }
