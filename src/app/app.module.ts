@@ -13,7 +13,8 @@ import { AuthHttp, AuthConfig } from 'angular2-jwt';
 import { HttpClientModule } from '@angular/common/http';
 import { CanDeactivateGuard } from '../app/guards/can-deactivate.guard';
 import { AuthGuard } from '../app/guards/auth-guard.service';
-import { HomepageModule } from '../../src/app/components/home-page/home-page.module'
+import { FrameworkModule } from '../app/components/framework/framework.module';
+import { WindowRefService } from '../../src/app/services/window-ref.service';
 
 export function authHttpServiceFactory(http: Http) {
   return new AuthHttp(new AuthConfig({tokenName: 'jwt', noJwtError: true}), http);
@@ -21,7 +22,7 @@ export function authHttpServiceFactory(http: Http) {
 
 @NgModule({
   declarations: [
-    AppComponent,
+    AppComponent
   ],
   imports: [
     BrowserModule,
@@ -31,7 +32,7 @@ export function authHttpServiceFactory(http: Http) {
     MaterialModule,
     BrowserAnimationsModule,
     HttpModule,
-    HomepageModule
+    FrameworkModule
   ],
   providers: [
     {provide: APP_CONFIG, useValue: APP_DI_CONFIG },
@@ -42,7 +43,8 @@ export function authHttpServiceFactory(http: Http) {
     },
     CanDeactivateGuard,
     AuthGuard,
+    WindowRefService
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}

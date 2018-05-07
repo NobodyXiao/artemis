@@ -22,6 +22,7 @@
         "styles.css"
       ],
       "scripts": [
+        "assets/js/extend.js"
       ],
       "environmentSource": "environments/environment.ts",
       "environments": {

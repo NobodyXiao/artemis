@@ -3,18 +3,19 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { AuthGuard } from './guards/auth-guard.service';
 import {LoginComponent} from '../app/components/auth/login/login.component';
-import { FrameworkComponent } from '../app/components/home-page/framework/framework.component';
+import { FrameworkComponent } from '../app/components/framework/framework.component';
+
 const APP_ROUTES: Routes = [
     {
       path: '',
-      component: FrameworkComponent,
+      loadChildren: '../app/components/framework/framework.module#FrameworkModule',
       canActivate: [AuthGuard],
       canActivateChild: [AuthGuard]
     },
     {
       path: 'admin',
       loadChildren: 'app/components/auth/login/login.module#LoginModule'
-    },
+    }
     // {
     //   path: 'fillegaccountinfo',
     //   loadChildren: 'app/components/enterprise-generic-account/enterprise-generic-account.module#EnterpriseGenericAccountModule'

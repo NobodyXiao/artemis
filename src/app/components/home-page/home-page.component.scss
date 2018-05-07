@@ -2,14 +2,19 @@
   height:100%;
   width:auto;
 }
+.home-header{
+  .header{
+    min-width:1100px;
+  }
+}
 app-content-list{
   display:flex;
   flex-direction: row;
   justify-content:space-between;
-  min-height:calc(100% - 224px);
+  min-height:calc(100% - 100px);
   height:auto;
   width:100%;
-  background:pink;
+  background:rgba(0, 0, 0, 0.75);
   margin:0px;
 }
 @media screen and (max-width: 720px) {
@@ -30,5 +35,7 @@ app-content-list{
     min-height:calc(100% - 64px);
   }
 }
+
+
 
 
