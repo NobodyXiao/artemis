@@ -9,7 +9,12 @@ export class HeaderComponent implements OnInit {
 
   constructor() { }
 
+  userName: string = 'user';
+
   ngOnInit() {
+    if (localStorage.getItem('username') !== undefined) {
+      this.userName = localStorage.getItem('username');
+    }
   }
 
 }

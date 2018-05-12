@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter} from '@angular/core';
 
 @Component({
   selector: 'app-content-list',
@@ -8,8 +8,11 @@ import { Component, OnInit } from '@angular/core';
 export class ContentListComponent implements OnInit {
 
   constructor() { }
-
+  @Output() eventToEmitHome = new EventEmitter;
   ngOnInit() {
   }
-
+  //点击列表页的文章，要向上发送事件，使首页响应事件并跳转
+  toHomePage(event){
+    this.eventToEmitHome.emit(event);
+  }
 }

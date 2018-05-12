@@ -2,24 +2,23 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { AuthGuard } from './guards/auth-guard.service';
-import {LoginComponent} from '../app/components/auth/login/login.component';
-import { FrameworkComponent } from '../app/components/framework/framework.component';
+import { HomePageComponent } from '../app/components/home-page/home-page.component';
 
 const APP_ROUTES: Routes = [
     {
       path: '',
-      loadChildren: '../app/components/framework/framework.module#FrameworkModule',
+      component: HomePageComponent,
       canActivate: [AuthGuard],
       canActivateChild: [AuthGuard]
     },
     {
       path: 'admin',
       loadChildren: 'app/components/auth/login/login.module#LoginModule'
+    },
+    {
+      path: 'detail',
+      loadChildren: 'app/components/detail-page/detail-page.module#DetailpageModule'
     }
-    // {
-    //   path: 'fillegaccountinfo',
-    //   loadChildren: 'app/components/enterprise-generic-account/enterprise-generic-account.module#EnterpriseGenericAccountModule'
-    // },
     // {
     //   path: 'setpassword',
     //   loadChildren: 'app/components/auth/reset-password/reset-password.module#ResetPasswordModule'

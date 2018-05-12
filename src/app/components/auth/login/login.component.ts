@@ -22,7 +22,7 @@ export class LoginComponent implements OnInit {
   public registerAccount: Account = new Account();
   public loginForm: FormGroup;
   public registerForm: FormGroup;
-  private isLogin = true;
+  public isLogin = true;
   // 页面上用于显示错误存储变量
   private errorDataForLogin = {};
   private errorDataForRegister = {};
@@ -150,7 +150,7 @@ export class LoginComponent implements OnInit {
           if (result.code == 0) {
             //登录成功，导航到菜单页面
             localStorage.setItem('jwt', result.token.token);
-            localStorage.setItem('username', result.user.gh);
+            localStorage.setItem('username', result.user.username);
             if (this.backRouterLink === undefined) {
               this.backRouterLink = '/';
             }
@@ -192,11 +192,9 @@ export class LoginComponent implements OnInit {
         res => {
           let result = res.json();
           if(result.code == 0){
-            console.log(result,'注册成功');
             // 注册成功之后切换到登陆这边，让用户登陆
             this.switchModel();
             this.isLogin = true;
-            console.log(result.user.email);
             this.loginAccount.username = result.user.username;
           }
           this.isRequestingForReg = false;

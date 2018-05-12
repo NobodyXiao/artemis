@@ -1,15 +1,15 @@
 import { TestBed, inject } from '@angular/core/testing';
 
-import { TurnDetailPageService } from './turn-detail-page.service';
+import { AppNavigationService } from './app-navigation.service';
 
 describe('TurnDetailPageService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [TurnDetailPageService]
+      providers: [AppNavigationService]
     });
   });
 
-  it('should be created', inject([TurnDetailPageService], (service: TurnDetailPageService) => {
+  it('should be created', inject([AppNavigationService], (service: AppNavigationService) => {
     expect(service).toBeTruthy();
   }));
 });
