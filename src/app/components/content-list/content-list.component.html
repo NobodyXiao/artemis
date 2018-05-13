@@ -2,7 +2,11 @@
 左侧部分
 </div>
 <div class="content-center">
-  <app-infor-box (eventToEmitContentList)="toHomePage($event)"></app-infor-box>
+  <app-infor-box
+    [articleInfor]="userArticlesList"
+    (eventToEmitContentList)="toHomePage($event)"
+  >
+  </app-infor-box>
 </div>
 <div class="content-right visible-sm">
 右侧热点

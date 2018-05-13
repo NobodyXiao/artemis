@@ -14,7 +14,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { CanDeactivateGuard } from '../app/guards/can-deactivate.guard';
 import { AuthGuard } from '../app/guards/auth-guard.service';
 import { WindowRefService } from '../../src/app/services/window-ref.service';
-import { HomepageModule } from '../app/components/home-page/home-page.module'
+import { HomepageModule } from '../app/components/home-page/home-page.module';
+import { AppNavigationService } from '../../src/app/services/app-navigation.service';
+import { DialogService } from '../../src/app/services/dialog.service';
 
 export function authHttpServiceFactory(http: Http) {
   return new AuthHttp(new AuthConfig({tokenName: 'jwt', noJwtError: true}), http);
@@ -43,7 +45,9 @@ export function authHttpServiceFactory(http: Http) {
     },
     CanDeactivateGuard,
     AuthGuard,
-    WindowRefService
+    WindowRefService,
+    AppNavigationService,
+    DialogService
   ],
   bootstrap: [AppComponent]
 })

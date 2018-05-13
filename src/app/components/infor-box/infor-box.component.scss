@@ -24,7 +24,7 @@
   width:calc(100% - 171px);
   height:auto;
   margin-left:171px;
-  
+  cursor: pointer;
 }
 .text-box>.instruction{
   max-height: 48px;
@@ -36,8 +36,11 @@
   -webkit-margin-after: 1em;
   -webkit-margin-start: 0px;
   -webkit-margin-end: 0px;
-  cursor: pointer;
   -webkit-font-smoothing: antialiased;
+}
+.title{
+  margin:0 0 10px 0;
+  font-weight: bold;
 }
 .subinfo-box{
   height: 20px;
@@ -47,8 +50,6 @@
   left:171px;
   line-height: 20px;
   margin-top: 10px;
-  margin-right:1.16em;
-  margin-bottom:1.16em;
   font-size: 12px;
 }
 .subinfo-box a{
@@ -108,5 +109,8 @@ subinfo-box-right:not(3){
   }
   .subinfo-box{
     margin:0;
+  }
+  .title{
+    display:none!important;
   }
 }

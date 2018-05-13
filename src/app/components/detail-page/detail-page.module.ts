@@ -4,6 +4,8 @@ import { Routes, RouterModule } from '@angular/router';
 import { DetailPageComponent } from '../detail-page/detail-page.component';
 import { GetTokenService } from '../../services/get-token.service';
 import { HomepageModule } from '../home-page/home-page.module';
+import { MarkdownModule } from 'angular2-markdown';
+import { FormsModule } from '@angular/forms';
 
 export const DETAILPAGE_ROUTES: Routes = [
   {path: '', component: DetailPageComponent}
@@ -13,7 +15,9 @@ export const DETAILPAGE_ROUTES: Routes = [
   imports: [
     CommonModule,
     RouterModule.forChild(DETAILPAGE_ROUTES),
-    HomepageModule
+    HomepageModule,
+    MarkdownModule.forRoot(),
+    FormsModule
   ],
   declarations: [ DetailPageComponent ],
   providers: [ ]

@@ -1,13 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation} from '@angular/core';
 import { WindowRefService } from '../../services/window-ref.service';
 import { Router, ActivatedRoute, Params, NavigationExtras } from '@angular/router';
 import { AppNavigationService } from '../../services/app-navigation.service';
+import { DialogService } from '../../services/dialog.service';
+import { AuthHttp, tokenNotExpired } from 'angular2-jwt';
 
 @Component({
   selector: 'app-home-page',
   templateUrl: './home-page.component.html',
   styleUrls: ['./home-page.component.scss'],
-  providers:[ AppNavigationService ]
+  providers:[ DialogService ],
+  encapsulation: ViewEncapsulation.None
 })
 
 export class HomePageComponent implements OnInit {
@@ -15,7 +18,8 @@ export class HomePageComponent implements OnInit {
     private winRef: WindowRefService,
     private _router: Router,
     private _route: ActivatedRoute,
-    private _appNavigationService: AppNavigationService
+    public _appNavigationService: AppNavigationService,
+    private _dialogService: DialogService
   ) {}
   public navigationExtras: NavigationExtras;
   public backRouterLink: string;
@@ -34,31 +38,14 @@ export class HomePageComponent implements OnInit {
         };
       }
     });
-    // 跳转到首页的时候，我要进行首页用户基本信息的获取
-
   }
-  turnDetailPage(){
-    console.log('事件发送至首页');
-    this._appNavigationService.turnDetailPage('123').subscribe(
-      res => {
-        let result = res.json();
-        if (result.code == 0) {
-          //登录成功，导航到菜单页面
-          if (this.backRouterLink === undefined) {
-            this.backRouterLink = '/';
-          }
-          if (this.navigationExtras) {
-            this._router.navigate([this.backRouterLink], this.navigationExtras);
-          } else {
-            this._router.navigate(['/detail']);
-          }
-        } else {
-          this.error = '服务器出错!'
-        }
-      },
-      error => {
-        this.error = '网络请求出去，等会再试吧!';
-      }
-    );
+  turnDetailPage(params){
+    localStorage.setItem('detailType', params.mime);
+    localStorage.setItem('detailPath', params.rpath);
+    if (tokenNotExpired('jwt')) {
+      this._router.navigate(['/detail'],{ queryParams: { title: params.title}});
+    } else {
+      this._router.navigate(['/admin']);
+    }
   }
 }

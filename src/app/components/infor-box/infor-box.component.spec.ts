@@ -1,5 +1,4 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { InforBoxComponent } from './infor-box.component';
 
 describe('InforBoxComponent', () => {

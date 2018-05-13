@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Router, ActivatedRoute, Params, NavigationExtras } from '@angular/router';
 import { Account } from '../../../models/account';
 import { MatDialog, MatDialogRef, MatDialogConfig} from '@angular/material'
@@ -14,7 +14,8 @@ import { AuthService } from '../../../services/auth.service';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
   providers: [DialogService, ValidationService, AuthService],
-  host: {'(document:keyup)': 'onKeyUp($event)'}
+  host: {'(document:keyup)': 'onKeyUp($event)'},
+  encapsulation: ViewEncapsulation.None
 })
 export class LoginComponent implements OnInit {
 
