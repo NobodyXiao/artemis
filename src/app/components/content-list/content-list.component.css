@@ -7,10 +7,12 @@
 }
 .content-left{
   min-width:270px;
+  max-width: 400px;
   background:#eee;
 }
 .content-right{
   min-width:270px;
+  max-width: 400px;
   background:#eee;
 }
 .content-center{
@@ -19,6 +21,139 @@
   min-height:100%;
   background:#fff;
   padding:20px 0;
+}
+.hot-list{
+  box-sizing: border-box;
+  height:100%;
+  width:100%;
+  padding:20px 10px 20px 10px;
+}
+.hot-list>div{
+  width:100%;
+}
+.hot-list>div:first-child{
+  height:40px;
+  font-size:1.2em;
+  font-weight:bold;
+  text-align: center;
+  line-height: 40px;
+}
+.hot-list>div:last-child{
+  box-sizing: border-box;
+  height:calc(100% - 40px);
+}
+.hot-list>div:last-child>ul>li{
+  width:100%;
+  height:30px;
+  text-decoration: none;
+  text-align: left;
+  line-height: 15px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.hot-list>div:last-child>ul>li>a{
+  text-decoration:none;
+  color:black;
+}
+.hot-list>div:last-child>ul>li>a:hover{
+  text-decoration:underline;
+  color:#FB7E33;
+}
+.uolo-things{
+  box-sizing: border-box;
+  height:100%;
+  width:100%;
+  padding:20px 8px;
+}
+.uolo-things>div{
+  width:calc(100% - 4px);
+}
+.uolo-things>.uolo-weather{
+  min-height:70px;
+  border:2px solid #FB7E33;
+  overflow: hidden;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-content: center;
+}
+
+.weather-left{
+  box-sizing: border-box;
+  height:70px;
+  width:100px;
+  line-height: 70px;
+  padding:15px 0;
+}
+.weather-left>div{
+  font-size:0.75em;
+  text-align: center;
+}
+.weather-left>div>div{
+  height:20px;
+  line-height: 20px;
+}
+.weather-logo{
+  height:70px;
+  width:60px;
+  margin:0 10px;
+  padding:5px 0;
+  box-sizing: border-box;
+}
+.weather-logo>img{
+  display: inline-block;
+  height:60px;  
+  width:60px;
+}
+.weather-right{
+  height:70px;
+  width:70px;
+  padding: 5px;
+  box-sizing: border-box;
+}
+.weather-right>div{
+  font-size:0.75em;
+  height:20px;
+  line-height: 20px;
+}
+.personal-schedule{
+  box-sizing: border-box;
+  height: calc(100% - 110px);
+  padding:20px 0 0 0; 
+}
+.personal-schedule>.personal-thing{
+  border:2px solid #FB7E33;
+  min-height:40px;
+  padding: 10px;
+}
+.personal-schedule>.personal-thing>div:first-child{
+  height:37px;
+  width:100%;
+  margin: 0;
+  padding: 0;
+  font-size: 0.75em;
+  font-weight: normal;
+}
+.personal-schedule>.personal-thing>div:last-child{
+  box-sizing: border-box;
+  height:30px;
+  width:100%;
+  padding:0 20px;
+  position: relative;
+}
+.personal-schedule>.personal-thing>div:last-child>button{
+  text-align: center;
+  width: 60px;
+  background: #FB7E33;
+  position: absolute;
+  top: 4px;
+  right: 0px;
+  outline: none;
+}
+.personal-schedule>.personal-thing>div:last-child>button>a{
+  text-decoration: none;
+  color:#fff;
 }
 @media screen and (min-width: 720px) and (max-width: 830px) {
   .content-left{
