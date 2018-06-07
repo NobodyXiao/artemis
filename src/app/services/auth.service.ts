@@ -27,22 +27,15 @@ export class AuthService {
  
 	//登录
 	login(user: Account): Observable<any> {
-		let requestUrl = this._appconfig.apiEndpoint + '/au/login';
+		let requestUrl = this._appconfig.apiAuth + '/au/login';
 		let searchParams = new URLSearchParams();
 		searchParams.set('username', user.username);
 		searchParams.set('password', user.password);
 		return this._http.post(requestUrl, searchParams.toString(), {headers: this.header});
 	}
-	//test
-	test(user: Account): Observable<any> {
-    if( tokenNotExpired('jwt') ){
-      let requestUrl = this._appconfig.apiEndpoint + '/au/check';
-      return this._GetTokenService.post(requestUrl,{headers: this.header});
-    }
 
-  }
   register(user: Account): Observable<any> {
-		let requestUrl = this._appconfig.apiEndpoint + '/au/signup';
+		let requestUrl = this._appconfig.apiAuth + '/au/signup';
 		let searchParams = new URLSearchParams();
 		searchParams.set('username', user.username);
     searchParams.set('password', user.password);
@@ -60,7 +53,7 @@ export class AuthService {
 	//修改密码
 	changePassword(pwd: any): Promise<any> {
 		if (tokenNotExpired('jwt')) {
-      let requestUrl = this._appconfig.apiEndpoint + '/admin/auth/changepwd';
+      let requestUrl = this._appconfig.apiAuth + '/admin/auth/changepwd';
       let searchParams = new URLSearchParams();
       searchParams.set('oldPassword', pwd.oldPassword);
       searchParams.set('newPassword', pwd.newPassword);
@@ -75,7 +68,7 @@ export class AuthService {
    * 获取安全问题
    */
     getSecurityQuestion(loginname: string): Promise<any> {
-		let requestUrl = this._appconfig.apiEndpoint + '/admin/auth/getsecurityquestion';
+		let requestUrl = this._appconfig.apiAuth + '/admin/auth/getsecurityquestion';
 		let searchParams = new URLSearchParams();
 		searchParams.set('loginname', loginname);
 
@@ -87,7 +80,7 @@ export class AuthService {
 	 * @param loginname
 	 */
 	sendResetEmail(loginname: string): Promise<any> {
-		let requestUrl = this._appconfig.apiEndpoint + '/admin/forgetpassword/sendemail';
+		let requestUrl = this._appconfig.apiAuth + '/admin/forgetpassword/sendemail';
 		let searchParams = new URLSearchParams();
 		searchParams.set('loginname', loginname);
 

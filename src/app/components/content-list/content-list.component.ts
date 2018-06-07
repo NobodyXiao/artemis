@@ -28,7 +28,7 @@ export class ContentListComponent implements OnInit {
       temperature : "23"
     }
   }
-  imgURL:string = '../../../assets/images/weather-image';
+  imgURL:string = '';
   weekArr: Array<any> = ['周一','周二','周三','周四','周五','周六','周日'];
 
   ngOnInit() {
@@ -70,7 +70,7 @@ export class ContentListComponent implements OnInit {
 
           this.weatherData.airQuality = resultData.result.pm25.pm25.quality;
 
-          this.imgURL = `${this.imgURL}${this.weatherData.weather.img}.png`;
+          this.imgURL = `./../../assets/images/weather-image${this.weatherData.weather.img}.png`;
 
         } else {
           this.error = '服务器出错!';
