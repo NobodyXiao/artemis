@@ -1,9 +1,11 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { DialogModule } from '../dialog/dialog.module';
 
 @NgModule({
   imports: [
-    CommonModule
+    CommonModule,
+    DialogModule
   ],
   declarations: [],
   providers: []

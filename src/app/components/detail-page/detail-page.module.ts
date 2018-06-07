@@ -6,6 +6,7 @@ import { GetTokenService } from '../../services/get-token.service';
 import { HomepageModule } from '../home-page/home-page.module';
 import { MarkdownModule } from 'angular2-markdown';
 import { FormsModule } from '@angular/forms';
+import { DialogModule } from '../dialog/dialog.module';
 
 export const DETAILPAGE_ROUTES: Routes = [
   {path: '', component: DetailPageComponent}
@@ -17,7 +18,8 @@ export const DETAILPAGE_ROUTES: Routes = [
     RouterModule.forChild(DETAILPAGE_ROUTES),
     HomepageModule,
     MarkdownModule.forRoot(),
-    FormsModule
+    FormsModule,
+    DialogModule
   ],
   declarations: [ DetailPageComponent ],
   providers: [ ]

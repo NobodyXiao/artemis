@@ -7,10 +7,12 @@ import { HeaderComponent } from '../header/header.component';
 import { ContentListComponent } from '../content-list/content-list.component';
 import { FooterComponent } from '../footer/footer.component';
 import { InforBoxComponent } from '../infor-box/infor-box.component';
+import { DialogModule } from '../dialog/dialog.module';
 
 @NgModule({
   imports: [
     CommonModule,
+    DialogModule
   ],
   declarations:[ HomePageComponent,HeaderComponent,FooterComponent,InforBoxComponent, ContentListComponent],
   providers: [ GetTokenService ],

@@ -1,4 +1,4 @@
-<div class="header">
+<div class="header" [ngStyle]="{'position':scrollHeight>50?'fixed':'relative'}">
   <div class="header-left">
     <a href="javascript:void(0);">
       <img src="../../../assets/logo.png" alt="logo">
@@ -9,7 +9,7 @@
     <form>
       <div>搜索</div>
       <div>
-        <input type="text">
+        <input type="text" placeholder="百度搜索">
       </div>
     </form>
   </div>

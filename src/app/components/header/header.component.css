@@ -43,6 +43,7 @@
   line-height: 30px;
   color:#fff;
   background:#FD7E23;
+  cursor: pointer;
 }
 .header-search form>div:last-child{
   float:right;

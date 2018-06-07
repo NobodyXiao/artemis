@@ -1,26 +1,38 @@
 <div class="content-left">
   <div class="uolo-things">
+    <!-- <div style="text-align: center;margin-bottom:10px;">天气</div> -->
     <div class="uolo-weather">
       <div class="weather-left">
         <div>
-          <div>北京</div>
-          <div>空气质量：轻度</div>
+          <div>{{weatherData.cityName}}</div>
+          <div>空气质量：{{weatherData.airQuality}}</div>
         </div>
       </div>
       <div class="weather-logo">
-        <img src="../../../assets/images/weather-image1.png" alt="天气logo">
+        <img [src]="imgURL" alt="天气logo">
       </div>
       <div class="weather-right">
-        <div>今天(周日)</div>
-        <div>18～30℃</div>
-        <div>晴转多云</div>
+        <div>今天({{weatherData.week}})</div>
+        <div>{{weatherData.weather.temperature}}℃</div>
+        <div>{{weatherData.weather.info}}</div>
       </div>
     </div>
-    <div class="personal-schedule">
+    <!-- <div style="text-align: center;margin:10px 0 -10px 0;">日程</div> -->
+    <div class="personal-schedule" style=" width: 100%;">
       <div class="personal-thing">
         <div style="overflow: hidden;text-overflow: ellipsis;display: -webkit-box;-webkit-line-clamp: 2;-webkit-box-orient: vertical;margin:0">今天打电话给妈妈，提醒他天气转凉，注意加衣服，另外告诉以下家人自己最近的状况，以免他们担心</div>
         <div>
-          <button><a href="#">已完成</a></button>
+          <button>
+            <a href="#">已完成</a>
+          </button>
+        </div>
+      </div>
+      <div class="personal-thing">
+        <div style="overflow: hidden;text-overflow: ellipsis;display: -webkit-box;-webkit-line-clamp: 2;-webkit-box-orient: vertical;margin:0">今天打电话给妈妈，提醒他天气转凉，注意加衣服，另外告诉以下家人自己最近的状况，以免他们担心</div>
+        <div>
+          <button>
+            <a href="#">已完成</a>
+          </button>
         </div>
       </div>
     </div>
@@ -37,13 +49,13 @@
   <div class="hot-list">
     <div>热门文章</div>
     <div>
-      <ul>
-        <li><a href="#">南水北调中线累计输水超144亿立方米</a></li>
-        <li><a href="#">中国学者利用废纸箱研制出新型重金属修复剂</a></li>
-        <li><a href="#">下周迎高考 北京多个考点集中区交通压力大</a></li>
-        <li><a href="#">女子为他人提供贷款抵押担保 11套房面临拍卖</a></li>
-        <li><a href="#">秦兵马俑考古发现第一人赵康民悄然离世</a></li>
-        <li><a href="#">男子宾馆熟睡中惊觉舌头被蜇 女友看到床上有蜈蚣</a></li>
+      <ul style="padding-left:20px">
+        <li><span class="li-circle"></span><a href="#">南水北调中线累计输水超144亿立方米</a></li>
+        <li><span class="li-circle"></span><a href="#">中国学者利用废纸箱研制出新型重金属修复剂</a></li>
+        <li><span class="li-circle"></span><a href="#">下周迎高考 北京多个考点集中区交通压力大</a></li>
+        <li><span class="li-circle"></span><a href="#">女子为他人提供贷款抵押担保 11套房面临拍卖</a></li>
+        <li><span class="li-circle"></span><a href="#">秦兵马俑考古发现第一人赵康民悄然离世</a></li>
+        <li><span class="li-circle"></span><a href="#">男子宾馆熟睡中惊觉舌头被蜇 女友看到床上有蜈蚣</a></li>
       </ul>
     </div>
   </div>

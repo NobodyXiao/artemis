@@ -1,4 +1,4 @@
-
+$colorArr: 'pink' 'lightblue' 'green' 'red' 'purple' 'yellow' 'Coral' 'DarkCyan' 'PaleVioletRed';
 [class^="content"]{
   float:left;
   min-height:100%;
@@ -47,10 +47,27 @@
   height:30px;
   text-decoration: none;
   text-align: left;
-  line-height: 15px;
+  line-height: 30px;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+}
+.li-circle{
+  display: inline-block;
+  height: 10px;
+  width: 10px;
+  border-radius: 10px;
+  margin-right: 10px;
+}
+
+.hot-list>div:last-child>ul>li:nth-of-type(3n+1)>.li-circle{
+  background: PaleVioletRed;
+}
+.hot-list>div:last-child>ul>li:nth-of-type(3n+2)>.li-circle{
+  background: Coral;
+}
+.hot-list>div:last-child>ul>li:nth-of-type(3n)>.li-circle{
+  background: green;
 }
 .hot-list>div:last-child>ul>li>a{
   text-decoration:none;
@@ -126,6 +143,7 @@
   border:2px solid #FB7E33;
   min-height:40px;
   padding: 10px;
+  margin-bottom:20px;
 }
 .personal-schedule>.personal-thing>div:first-child{
   height:37px;
