@@ -51,6 +51,8 @@ $colorArr: 'pink' 'lightblue' 'green' 'red' 'purple' 'yellow' 'Coral' 'DarkCyan'
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  margin-bottom: 0.5em;
+  margin-top: 0.5em;
 }
 .li-circle{
   display: inline-block;
