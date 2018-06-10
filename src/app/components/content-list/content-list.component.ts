@@ -28,6 +28,14 @@ export class ContentListComponent implements OnInit {
       temperature : "23"
     }
   }
+  things: Array<any> = [{
+    uuid: "",
+    content: "欢迎来到UOLO，一个自我对话的空间，在这里成就不一样的自己"
+  },
+  {
+    uuid: "",
+    content: "注册成uolo一员， 让生活从此开始改变！"
+  }];
   imgURL:string = '';
   weekArr: Array<any> = ['周一','周二','周三','周四','周五','周六','周日'];
 
@@ -79,6 +87,29 @@ export class ContentListComponent implements OnInit {
       },
       error => {
         this.error = '网络请求出去，等会再试吧!';
+        this._dialogService.alert('Error',this.error);
+      }
+    );
+    // 请求todo list部分接口
+    this._appNavigationService.toGetPersonalThings().subscribe(
+      res => {
+        let resultData = res.json();
+        if (resultData.code === 0) {
+          //请求列表页数据成功，存储数据，绑定到页面
+          for (let data of resultData.things) {
+            console.log(data)
+            var d = {
+              uuid: data.uuid,
+              content: data.content
+            }
+            this.things.push(d)
+          }
+          console.log('123', this.things);
+        } else {
+          this._dialogService.alert('Error',this.error);
+        }
+      },
+      error => {
         this._dialogService.alert('Error',this.error);
       }
     );

@@ -61,4 +61,14 @@ export class AppNavigationService {
       this._router.navigate(['/admin']);
     }
   }
+  // 跳转到首页，向服务器请求todolist部分信息
+  toGetPersonalThings(): Observable<any> {
+    if (tokenNotExpired('jwt')) {
+      let requestUrl = this._appconfig.apiEndpoint + '/things/v1/list/todo';
+      return this._authHttp.get(requestUrl,{ headers: this.header });
+    } else {
+      this._router.navigate(['/admin']);
+    }
+  }
+  
 }
