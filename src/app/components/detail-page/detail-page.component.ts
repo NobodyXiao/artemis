@@ -19,6 +19,7 @@ export class DetailPageComponent implements OnInit {
   timerObserver: Subscription;
   error:string  = '';
   title: string = '';
+  articleObj: any = {};
 
   constructor(
     private winRef: WindowRefService,
@@ -59,6 +60,8 @@ export class DetailPageComponent implements OnInit {
       }
     );
     this._route.queryParams.subscribe((params: Params) => {
+      //console.log(params)
+      this.articleObj = params;
       if('title' in params){
         this.title = params.title;
       }

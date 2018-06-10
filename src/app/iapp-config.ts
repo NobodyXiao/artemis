@@ -7,5 +7,6 @@ export interface IappConfig {
   apiUoloThings: string,
   apiAuth: string,
   apiAuthLogin: string,
-  apiAuthRegister: string
+  apiAuthRegister: string,
+  apiPublicThingsTodo: string
 }

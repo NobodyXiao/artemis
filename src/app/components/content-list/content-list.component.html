@@ -18,28 +18,24 @@
       </div>
     </div>
     <!-- <div style="text-align: center;margin:10px 0 -10px 0;">日程</div> -->
-    <div class="things" *ngFor="let item of things">
-
     <div class="personal-schedule" style=" width: 100%;">
-      <div class="personal-thing">
-        <div style="overflow: hidden;text-overflow: ellipsis;display: -webkit-box;-webkit-line-clamp: 2;-webkit-box-orient: vertical;margin:0">
-          {{item.content}}</div>
-        <div>
-          <button>
-            <a href="#">完  成</a>
-          </button>
+      <div *ngFor="let item of things">
+        <div class="personal-thing">
+          <div style="overflow: hidden;text-overflow: ellipsis;display: -webkit-box;-webkit-line-clamp: 2;-webkit-box-orient: vertical;margin:0">
+            {{item.content}}
+          </div>
+          <div>
+            <button>
+              <a href="#">完 成</a>
+            </button>
+          </div>
         </div>
-      </div>
-
       </div>
     </div>
   </div>
 </div>
 <div class="content-center">
-  <app-infor-box
-    [articleInfor]="userArticlesList"
-    (eventToEmitContentList)="toHomePage($event)"
-  >
+  <app-infor-box [articleInfor]="userArticlesList" (eventToEmitContentList)="toHomePage($event)">
   </app-infor-box>
 </div>
 <div class="content-right">
@@ -47,12 +43,30 @@
     <div>热门文章</div>
     <div>
       <ul style="padding-left:20px">
-        <li><span class="li-circle"></span><a href="#">南水北调中线累计输水超144亿立方米</a></li>
-        <li><span class="li-circle"></span><a href="#">中国学者利用废纸箱研制出新型重金属修复剂</a></li>
-        <li><span class="li-circle"></span><a href="#">下周迎高考 北京多个考点集中区交通压力大</a></li>
-        <li><span class="li-circle"></span><a href="#">女子为他人提供贷款抵押担保 11套房面临拍卖</a></li>
-        <li><span class="li-circle"></span><a href="#">秦兵马俑考古发现第一人赵康民悄然离世</a></li>
-        <li><span class="li-circle"></span><a href="#">男子宾馆熟睡中惊觉舌头被蜇 女友看到床上有蜈蚣</a></li>
+        <li>
+          <span class="li-circle"></span>
+          <a href="#">南水北调中线累计输水超144亿立方米</a>
+        </li>
+        <li>
+          <span class="li-circle"></span>
+          <a href="#">中国学者利用废纸箱研制出新型重金属修复剂</a>
+        </li>
+        <li>
+          <span class="li-circle"></span>
+          <a href="#">下周迎高考 北京多个考点集中区交通压力大</a>
+        </li>
+        <li>
+          <span class="li-circle"></span>
+          <a href="#">女子为他人提供贷款抵押担保 11套房面临拍卖</a>
+        </li>
+        <li>
+          <span class="li-circle"></span>
+          <a href="#">秦兵马俑考古发现第一人赵康民悄然离世</a>
+        </li>
+        <li>
+          <span class="li-circle"></span>
+          <a href="#">男子宾馆熟睡中惊觉舌头被蜇 女友看到床上有蜈蚣</a>
+        </li>
       </ul>
     </div>
   </div>

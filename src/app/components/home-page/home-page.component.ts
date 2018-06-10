@@ -42,10 +42,9 @@ export class HomePageComponent implements OnInit {
   turnDetailPage(params){
     localStorage.setItem('detailType', params.mime);
     localStorage.setItem('detailPath', params.rpath);
-    if (tokenNotExpired('jwt')) {
-      this._router.navigate(['/detail'],{ queryParams: { title: params.title}});
-    } else {
-      this._router.navigate(['/admin']);
-    }
+
+    //this._router.navigate(['/detail'],{ queryParams: { title: params.title}});
+    // 这里我们通过路由传递整个文章对象，而不仅仅是title， 这样有利于我们进行数据的处理
+    this._router.navigate(['/detail'],{ queryParams: params});
   }
 }

@@ -15,7 +15,7 @@ mat-card {
 mat-card-subtitle{
   height:100px;
   width:calc(100% - 40px);
-  background: greenyellow;
+  background: white;
   margin-left:20px;
 }
 mat-card-content{

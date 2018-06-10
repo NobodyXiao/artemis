@@ -86,12 +86,9 @@
 }
 .setting-block div{
   padding:5px;
-}
-.setting-block>div a{
-  text-decoration:none;
   color:black;
 }
-.setting-block>div a:hover{
+.setting-block div:hover{
   text-decoration:underline;
   cursor: pointer;
   color: #FD7E23;
@@ -114,6 +111,7 @@ flex: 1 1 auto;
   } 
   .header-right span{
     display:none;
+    cursor: pointer;
   }
   .header-search{
     display:none;

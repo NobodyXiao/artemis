@@ -47,7 +47,6 @@ export class AuthService {
 		if (tokenNotExpired('jwt')) {
 			localStorage.removeItem('jwt');
 		}
-		this._router.navigate(['/admin']);
 	}
 
 	//修改密码

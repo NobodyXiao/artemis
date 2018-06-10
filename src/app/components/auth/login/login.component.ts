@@ -33,6 +33,7 @@ export class LoginComponent implements OnInit {
   public backRouterLink: string;
   private isRequestingForLogin: boolean = false;
   private isRequestingForReg: boolean = false;
+  redirectUrl: string = '';
 
   constructor(
     private _mdialog: MatDialog,
@@ -46,6 +47,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     this._route.queryParams.subscribe((params: Params) => {
+
       if (params['backRouterLink']) {
         let index = params['backRouterLink'].indexOf('?');
         if (index > -1) {

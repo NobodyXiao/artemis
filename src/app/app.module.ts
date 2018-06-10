@@ -17,6 +17,7 @@ import { WindowRefService } from '../../src/app/services/window-ref.service';
 import { HomepageModule } from '../app/components/home-page/home-page.module';
 import { AppNavigationService } from '../../src/app/services/app-navigation.service';
 import { DialogService } from '../../src/app/services/dialog.service';
+import { AuthService } from '../app/services/auth.service';
 
 export function authHttpServiceFactory(http: Http) {
   return new AuthHttp(new AuthConfig({tokenName: 'jwt', noJwtError: true}), http);
@@ -47,7 +48,8 @@ export function authHttpServiceFactory(http: Http) {
     AuthGuard,
     WindowRefService,
     AppNavigationService,
-    DialogService
+    DialogService,
+    AuthService
   ],
   bootstrap: [AppComponent]
 })

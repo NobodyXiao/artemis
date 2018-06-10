@@ -8,16 +8,22 @@ const APP_ROUTES: Routes = [
     {
       path: '',
       component: HomePageComponent,
-      canActivate: [AuthGuard],
-      canActivateChild: [AuthGuard]
+      // canActivate: [AuthGuard],
+      // canActivateChild: [AuthGuard]
     },
     {
-      path: 'admin',
+      path: 'login',
       loadChildren: 'app/components/auth/login/login.module#LoginModule'
     },
     {
       path: 'detail',
       loadChildren: 'app/components/detail-page/detail-page.module#DetailpageModule'
+    },
+    {
+      path: 'personal',
+      loadChildren: 'app/components/personal-page/personal-page.module#PersonalPageModule',
+      // canActivate: [AuthGuard],
+      // canActivateChild: [AuthGuard]
     }
     // {
     //   path: 'setpassword',

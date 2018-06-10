@@ -26,18 +26,14 @@ export class AppNavigationService {
   ) {}
   // 跳转至详情页
   turnDetailPage(): Observable<any> {
-    if (tokenNotExpired('jwt')) {
-      let requestUrl = this._appconfig.apiArticleDetail;
-      let searchParams = new URLSearchParams();
-      var type = localStorage.getItem('detailType');
-      var rpath = localStorage.getItem('detailPath');
+    let requestUrl = this._appconfig.apiArticleDetail;
+    let searchParams = new URLSearchParams();
+    var type = localStorage.getItem('detailType');
+    var rpath = localStorage.getItem('detailPath');
 
-      searchParams.set('type', type|| "md");
-      searchParams.set('path', rpath || '');
-      return this._authHttp.post(requestUrl, searchParams.toString(), { headers: this.header });
-    } else {
-      this._router.navigate(['/admin']);
-    }
+    searchParams.set('type', type || "md");
+    searchParams.set('path', rpath || '');
+    return this._authHttp.post(requestUrl, searchParams.toString(), { headers: this.header });
   }
   // 跳转到首页，向服务器进行列表页关于用户的信息请求
   toGetUserHomeList(): Observable<any> {
@@ -47,21 +43,13 @@ export class AppNavigationService {
       return this._authHttp.get(requestUrl,{ headers: this.header });
     } else {
       let searchParams = new URLSearchParams();
-      return this._authHttp.get(this._appconfig.apiPublicLens)
-      //this._router.navigate(['/admin']);
+      return this._authHttp.get(this._appconfig.apiPublicLens);
     }
   }
   // 跳转到首页，向服务器进行列表页关于用户的信息请求
   toGetWeatherInfor(): Observable<any> {
-    if (tokenNotExpired('jwt')) {
-      let requestUrl = this._appconfig.apiWeather;
-      // let searchParams = new URLSearchParams();
-      // 传递城市的参数
-      // searchParams.set('city', '上海');
-      return this._authHttp.get(requestUrl,{ headers: this.header });
-    } else {
-      this._router.navigate(['/admin']);
-    }
+    let requestUrl = this._appconfig.apiWeather;
+    return this._authHttp.get(requestUrl,{ headers: this.header });
   }
   // 跳转到首页，向服务器请求todolist部分信息
   toGetPersonalThings(): Observable<any> {
@@ -69,8 +57,24 @@ export class AppNavigationService {
       let requestUrl = this._appconfig.apiUoloThings
       return this._authHttp.get(requestUrl,{ headers: this.header });
     } else {
-      this._router.navigate(['/admin']);
+      let requestUrl = this._appconfig.apiPublicThingsTodo
+      return this._authHttp.get(requestUrl,{ headers: this.header });
     }
   }
+  // 跳转至个人信息页面
+  // turnPersonalPage(): Observable<any> {
+  //   if (tokenNotExpired('jwt')) {
+  //     let requestUrl = this._appconfig.apiArticleDetail;
+  //     let searchParams = new URLSearchParams();
+  //     var type = localStorage.getItem('detailType');
+  //     var rpath = localStorage.getItem('detailPath');
+
+  //     searchParams.set('type', type|| "md");
+  //     searchParams.set('path', rpath || '');
+  //     return this._authHttp.post(requestUrl, searchParams.toString(), { headers: this.header });
+  //   } else {
+  //     this._router.navigate(['/admin']);
+  //   }
+  // }
   
 }

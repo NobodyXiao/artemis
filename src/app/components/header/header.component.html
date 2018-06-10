@@ -1,15 +1,17 @@
 <div class="header" [ngStyle]="{'position':scrollHeight>50?'fixed':'relative'}">
   <div class="header-left">
-    <a href="javascript:void(0);">
-      <img src="../../../assets/logo.png" alt="logo">
+    <!-- <a href="javascript:void(0);"> -->
+    <a href="./">
+      <img src="../../../assets/logo.png" (click)="onLogoClicked();" alt="logo">
     </a>
   </div>
   <div class="remaining-space"></div>
   <div class="header-search">
-    <form>
-      <div>搜索</div>
+    <form >
+      <div (click)="onEnter($event, searchContent.value)">搜索</div>
       <div>
-        <input type="text" placeholder="百度搜索">
+        <input #searchContent type="text" (keydown.enter)="onEnter($event, searchContent.value);" placeholder="百度搜索">
+        <input type="text" style="display: hidden;">
       </div>
     </form>
   </div>
@@ -17,10 +19,11 @@
     <a href="javascript:void(0);">
       <img src="../../../assets/userLogo.png" alt="userLogo">
     </a>
-    <span style="color:#fff;">{{userName}}</span>
-    <div class="setting-block">
-      <div><a href="#">个人信息</a></div>
-      <div><a href="#">退出</a></div>
+    <span style="color:#fff;" *ngIf="isLogin">{{userName}}</span>
+    <span style="color:#fff;" *ngIf="!isLogin" (click)="onLogin()">Login</span>
+    <div class="setting-block" *ngIf="isLogin">
+      <div (click)="routerToProfilePage()">个人信息</div>
+      <div (click)="onLogOut()">退出</div>
     </div>
   </div>    
 </div>

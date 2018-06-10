@@ -136,16 +136,16 @@ $colorArr: 'pink' 'lightblue' 'green' 'red' 'purple' 'yellow' 'Coral' 'DarkCyan'
 }
 .personal-schedule{
   box-sizing: border-box;
-  height: calc(100% - 110px);
-  padding:20px 0 0 0; 
+  padding:20px 0 0 0;
+  height: calc(100% - 54px);
 }
-.personal-schedule>.personal-thing{
+.personal-schedule .personal-thing{
   border:2px solid #FB7E33;
   min-height:40px;
   padding: 10px;
   margin-bottom:20px;
 }
-.personal-schedule>.personal-thing>div:first-child{
+.personal-schedule .personal-thing>div:first-child{
   height:37px;
   width:100%;
   margin: 0;
@@ -153,14 +153,14 @@ $colorArr: 'pink' 'lightblue' 'green' 'red' 'purple' 'yellow' 'Coral' 'DarkCyan'
   font-size: 0.75em;
   font-weight: normal;
 }
-.personal-schedule>.personal-thing>div:last-child{
+.personal-schedule .personal-thing>div:last-child{
   box-sizing: border-box;
   height:30px;
   width:100%;
   padding:0 20px;
   position: relative;
 }
-.personal-schedule>.personal-thing>div:last-child>button{
+.personal-schedule .personal-thing>div:last-child>button{
   text-align: center;
   width: 60px;
   background: #FB7E33;
@@ -169,7 +169,7 @@ $colorArr: 'pink' 'lightblue' 'green' 'red' 'purple' 'yellow' 'Coral' 'DarkCyan'
   right: 0px;
   outline: none;
 }
-.personal-schedule>.personal-thing>div:last-child>button>a{
+.personal-schedule .personal-thing>div:last-child>button>a{
   text-decoration: none;
   color:#fff;
 }
