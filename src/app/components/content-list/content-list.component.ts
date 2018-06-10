@@ -37,7 +37,7 @@ export class ContentListComponent implements OnInit {
     content: "注册成uolo一员， 让生活从此开始改变！"
   }];
   imgURL:string = '';
-  weekArr: Array<any> = ['周一','周二','周三','周四','周五','周六','周日'];
+  weekArr: Array<any> = ['周日', '周一','周二','周三','周四','周五','周六'];
 
   ngOnInit() {
 
@@ -74,7 +74,7 @@ export class ContentListComponent implements OnInit {
 
           this.weatherData.weather = todayWeatherInfor.weather;
 
-          this.weatherData.week = this.weekArr[todayWeatherInfor.week - 1];
+          this.weatherData.week = this.weekArr[todayWeatherInfor.week];
 
           this.weatherData.airQuality = resultData.result.pm25.pm25.quality;
 
@@ -86,7 +86,7 @@ export class ContentListComponent implements OnInit {
         }
       },
       error => {
-        this.error = '网络请求出去，等会再试吧!';
+        this.error = '网络请求出错，等会再试吧!';
         this._dialogService.alert('Error',this.error);
       }
     );
@@ -96,15 +96,16 @@ export class ContentListComponent implements OnInit {
         let resultData = res.json();
         if (resultData.code === 0) {
           //请求列表页数据成功，存储数据，绑定到页面
+          if (resultData.things.length > 0) {
+            this.things = [];
+          }
           for (let data of resultData.things) {
-            console.log(data)
             var d = {
               uuid: data.uuid,
               content: data.content
             }
             this.things.push(d)
           }
-          console.log('123', this.things);
         } else {
           this._dialogService.alert('Error',this.error);
         }

@@ -27,7 +27,7 @@ export class AppNavigationService {
   // 跳转至详情页
   turnDetailPage(): Observable<any> {
     if (tokenNotExpired('jwt')) {
-      let requestUrl = this._appconfig.apiEndpoint + '/article/detail';
+      let requestUrl = this._appconfig.apiArticleDetail;
       let searchParams = new URLSearchParams();
       var type = localStorage.getItem('detailType');
       var rpath = localStorage.getItem('detailPath');
@@ -42,17 +42,19 @@ export class AppNavigationService {
   // 跳转到首页，向服务器进行列表页关于用户的信息请求
   toGetUserHomeList(): Observable<any> {
     if (tokenNotExpired('jwt')) {
-      let requestUrl = this._appconfig.apiEndpoint + '/lenslist';
+      let requestUrl = this._appconfig.apiLensList;
       let searchParams = new URLSearchParams();
       return this._authHttp.get(requestUrl,{ headers: this.header });
     } else {
-      this._router.navigate(['/admin']);
+      let searchParams = new URLSearchParams();
+      return this._authHttp.get(this._appconfig.apiPublicLens)
+      //this._router.navigate(['/admin']);
     }
   }
   // 跳转到首页，向服务器进行列表页关于用户的信息请求
   toGetWeatherInfor(): Observable<any> {
     if (tokenNotExpired('jwt')) {
-      let requestUrl = this._appconfig.apiEndpoint + '/tools/weather/query';
+      let requestUrl = this._appconfig.apiWeather;
       // let searchParams = new URLSearchParams();
       // 传递城市的参数
       // searchParams.set('city', '上海');
@@ -64,7 +66,7 @@ export class AppNavigationService {
   // 跳转到首页，向服务器请求todolist部分信息
   toGetPersonalThings(): Observable<any> {
     if (tokenNotExpired('jwt')) {
-      let requestUrl = this._appconfig.apiEndpoint + '/things/v1/list/todo';
+      let requestUrl = this._appconfig.apiUoloThings
       return this._authHttp.get(requestUrl,{ headers: this.header });
     } else {
       this._router.navigate(['/admin']);

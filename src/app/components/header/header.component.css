@@ -65,10 +65,36 @@
   align-items: center;
   margin-right:20px;
 }
+.header-right:hover .setting-block{
+  display:block;
+}
 .header-right img{
   display:inline-block;
   height:42px;
   margin:4px 20px 0 0;
+}
+.setting-block{
+  display:none;
+  height: 50px;
+  width: 100px;
+  position: absolute;
+  bottom: -50px;
+  right: 0px;
+  background: #fff;
+  font-size: 0.75em;
+  text-align: center;
+}
+.setting-block div{
+  padding:5px;
+}
+.setting-block>div a{
+  text-decoration:none;
+  color:black;
+}
+.setting-block>div a:hover{
+  text-decoration:underline;
+  cursor: pointer;
+  color: #FD7E23;
 }
 .remaining-space {
 flex: 1 1 auto;

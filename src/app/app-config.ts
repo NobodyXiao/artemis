@@ -3,7 +3,14 @@ import { IappConfig } from './iapp-config';
 
 export const APP_DI_CONFIG: IappConfig = {
   apiEndpoint: 'https://api.echoface.cn/lens',
-  apiAuth:'https://api.echoface.cn'
+  apiAuth:'https://api.echoface.cn',
+  apiArticleDetail:'https://api.echoface.cn/lens/article/detail',
+  apiLensList:'https://api.echoface.cn/lens/lenslist',
+  apiPublicLens: 'https://api.echoface.cn/lens/p/lenslist',
+  apiWeather: 'https://api.echoface.cn/lens/p/tools/weather/query',
+  apiUoloThings: 'https://api.echoface.cn/lens/things/v1/list/todo',
+  apiAuthLogin: 'https://api.echoface.cn/au/login',
+  apiAuthRegister: 'https://api.echoface.cn/au/signup'
 };
 
 export let APP_CONFIG = new InjectionToken('app.config');

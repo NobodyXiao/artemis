@@ -11,7 +11,9 @@ export class HeaderComponent implements OnInit {
   constructor() { }
 
   userName: string = 'user';
-  scrollHeight:number = 0;
+  scrollHeight: number = 0;
+  toggleProfileFlag: boolean = false;
+
   ngOnInit() {
     Observable.fromEvent(window,'scroll').subscribe(
       (event) => {
@@ -26,5 +28,7 @@ export class HeaderComponent implements OnInit {
       this.userName = localStorage.getItem('username');
     }
   }
-
-}
+  toggleProfile(){
+    this.toggleProfileFlag = !this.toggleProfileFlag;
+  }
+} 

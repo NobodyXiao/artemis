@@ -27,7 +27,7 @@ export class AuthService {
  
 	//登录
 	login(user: Account): Observable<any> {
-		let requestUrl = this._appconfig.apiAuth + '/au/login';
+		let requestUrl = this._appconfig.apiAuthLogin;
 		let searchParams = new URLSearchParams();
 		searchParams.set('username', user.username);
 		searchParams.set('password', user.password);
@@ -35,7 +35,7 @@ export class AuthService {
 	}
 
   register(user: Account): Observable<any> {
-		let requestUrl = this._appconfig.apiAuth + '/au/signup';
+		let requestUrl = this._appconfig.apiAuthRegister;
 		let searchParams = new URLSearchParams();
 		searchParams.set('username', user.username);
     searchParams.set('password', user.password);
