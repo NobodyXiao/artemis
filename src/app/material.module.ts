@@ -20,7 +20,8 @@ import {
   MatTooltipModule,
   MatMenuModule,
   MatGridListModule,
-  MatDialogModule
+  MatDialogModule,
+  MatChipsModule
   // and so on...
 } from '@angular/material';
 const MAT_MODULES  = [
@@ -43,7 +44,8 @@ const MAT_MODULES  = [
     MatTooltipModule,
     MatMenuModule,
     MatGridListModule,
-    MatDialogModule
+    MatDialogModule,
+    MatChipsModule
   // and so on...
 ];
 

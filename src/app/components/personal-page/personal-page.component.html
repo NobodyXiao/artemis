@@ -1,18 +1,18 @@
-<div class="wrap">
-  <div class="header-box">
-    <app-header></app-header>
-  </div>
-  <div class="content-box">
+<div class="wrap-box">
+  <!-- 头部 -->
+  <app-header class="detail-header"></app-header>
+  
+  <div class="personal-infor-box">
     <div class="left-sidepart">
       <div><img src="/assets/userLogo.png" alt="user-logo"></div>
       <ul>
-        <li>个人资料</li>
-        <li>安全设置</li>
-        <li>个人大事记</li>
+        <li class="personal-item" *ngFor="let item of personalItemArr let itemCount = index">
+          <span (click)="addItemComponent(itemCount)" [ngClass]="{'activeItem':selecteditem === itemCount}">{{item}}</span>
+        </li>
       </ul>
     </div>
     <div class="right-sidepart">
-      456
+      <ng-template #dmroom></ng-template>
     </div>
   </div>
 </div>

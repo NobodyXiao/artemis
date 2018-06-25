@@ -11,7 +11,7 @@ import {Location} from '@angular/common';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
-  styleUrls: ['./header.component.css'],
+  styleUrls: ['./header.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
 export class HeaderComponent implements OnInit {
@@ -41,7 +41,7 @@ export class HeaderComponent implements OnInit {
     )
 
     if (localStorage.getItem('username') !== undefined) {
-      this.userName = localStorage.getItem('username');
+      this.userName = JSON.parse(localStorage.getItem('user')).nickname;
     }
     if (tokenNotExpired('jwt')) {
       this.isLogin = true;

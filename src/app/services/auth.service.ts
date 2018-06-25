@@ -67,7 +67,7 @@ export class AuthService {
    * 获取安全问题
    */
     getSecurityQuestion(loginname: string): Promise<any> {
-		let requestUrl = this._appconfig.apiAuth + '/admin/auth/getsecurityquestion';
+		let requestUrl = this._appconfig.apiAuth + '/admin/auth/getsecurityquestion';	
 		let searchParams = new URLSearchParams();
 		searchParams.set('loginname', loginname);
 
@@ -84,6 +84,17 @@ export class AuthService {
 		searchParams.set('loginname', loginname);
 
 		return this._authHttp.post(requestUrl, searchParams.toString(), {headers: this.header}).toPromise();
+	}
+	// 修改个人信息
+	modifyPersonalInfor(postData:any): Observable<any>{
+		let header:Headers  = new Headers({'Content-Type': 'application/json'});
+		let options = new ResponseOptions({headers:header});
+		if(tokenNotExpired('jwt')){
+			let requestUrl = this._appconfig.apiAuth + '/user/profile/save';
+			return this._authHttp.post(requestUrl, JSON.stringify(postData), options);
+		} else {
+			return new Observable(observer => { observer.next(this.response); observer.complete();});
+		}
 	}
 }
 

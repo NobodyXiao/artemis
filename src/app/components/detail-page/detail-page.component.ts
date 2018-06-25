@@ -55,12 +55,11 @@ export class DetailPageComponent implements OnInit {
         }
       },
       error => {
-        this.error = '网络请求出去，等会再试吧!';
+        this.error = '网络请求出错，等会再试吧!';
         this._dialogService.alert('Error','网络请求出去，等会再试吧!');
       }
     );
     this._route.queryParams.subscribe((params: Params) => {
-      //console.log(params)
       this.articleObj = params;
       if('title' in params){
         this.title = params.title;

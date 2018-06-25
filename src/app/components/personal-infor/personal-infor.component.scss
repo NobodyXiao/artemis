@@ -1,0 +1,47 @@
+app-personal-infor{
+  mat-toolbar {
+    background-color: transparent;
+  }
+  mat-toolbar-row {
+    justify-content: flex-end;
+    .mat-raised-button {
+      margin-left: 10px;
+    }
+  }
+  .item-custom{
+    height:60px !important;
+  }
+  .personal-infor-card{
+    height: calc(100% - 64px);
+    box-sizing: border-box;
+    min-width: 100%;
+    margin: 0;
+    // box-shadow: none !important;
+  }
+  .f-left {
+    min-width: 100px;
+    text-align: left;
+  }
+  .f-right {
+    flex-grow: 1;
+    text-align: left;
+    .gen-wid {
+      width: 300px;
+      margin: 0;
+    }
+  }
+  label{
+    margin-right:50px;
+  }
+  mat-card-content{
+    padding:20px 50px;
+    height: 100%;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  .hobby-item{
+    .mat-list-item-content{
+      height: auto !important;
+    }
+  }
+}

@@ -153,7 +153,7 @@ export class LoginComponent implements OnInit {
           if (result.code == 0) {
             //登录成功，导航到菜单页面
             localStorage.setItem('jwt', result.token.token);
-            localStorage.setItem('username', result.user.username);
+            localStorage.setItem('user', JSON.stringify(result.user));
             if (this.backRouterLink === undefined) {
               this.backRouterLink = '/';
             }
@@ -168,7 +168,7 @@ export class LoginComponent implements OnInit {
           this.isRequestingForLogin = false;
         },
         error => {
-          this.error = '网络请求出去，等会再试吧!';
+          this.error = '网络请求出错，等会再试吧!';
           this.isRequestingForLogin = false;
         }
       );

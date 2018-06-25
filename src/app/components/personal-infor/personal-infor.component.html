@@ -1,0 +1,85 @@
+<mat-toolbar class="text-tool">
+  <mat-toolbar-row>
+    <button mat-raised-button color="primary" [disabled]="!(hasChanged && personalInforForm.valid)" (click)="save()">
+      Save
+    </button>
+  </mat-toolbar-row> 
+</mat-toolbar>
+
+<mat-card class="personal-infor-card">
+  <mat-card-content>
+    <mat-list>
+      <form [formGroup]="personalInforForm" autocomplete="off">  
+        <mat-list-item class="item-custom">
+          <div class="f-left">用户名</div>
+          <div class="f-right">
+            <mat-form-field class="gen-wid">
+              <input matInput type="text" floatPlaceholder="never"
+                formControlName="nickName" [(ngModel)]="personalInfor.nickName" required
+              >
+              <mat-error *ngIf="personalInforForm">{{errorData?.nickName}}</mat-error>
+            </mat-form-field>
+          </div>
+        </mat-list-item>
+
+        <mat-list-item class="item-custom">
+          <div class="f-left">性别</div>
+          <div class="f-right gen-wid">
+            <mat-radio-group [(ngModel)]="personalInfor.sex" formControlName="sex">
+              <mat-radio-button value="1">男</mat-radio-button>
+              <mat-radio-button value="2">女</mat-radio-button>
+              <mat-error>{{errorData?.sex}}</mat-error>
+            </mat-radio-group>
+          </div>
+        </mat-list-item>
+
+        <mat-list-item class="item-custom">
+          <div class="f-left">出生年月</div>
+          <div class="f-right">
+            <mat-form-field class="gen-wid">
+              <input matInput [max]="maxDate" placeholder="Choose your birthday" [matDatepicker]="picker"  formControlName="birthday" [(ngModel)]="personalInfor.birthday">
+              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+              <mat-datepicker matDatepicker #picker disabled="false"></mat-datepicker>
+            </mat-form-field>
+          </div>
+        </mat-list-item>
+
+        <mat-list-item class="item-custom">
+          <div class="f-left">现居地</div>
+          <div class="f-right">
+            <mat-form-field class="gen-wid">
+              <input matInput type="text" floatPlaceholder="never" formControlName="livePlace" [(ngModel)]="personalInfor.livePlace">
+              <mat-error>{{errorData?.livePlace}}</mat-error>
+            </mat-form-field>
+          </div>
+        </mat-list-item>
+
+        <mat-list-item class="item-custom">
+          <div class="f-left">职业</div>
+          <div class="f-right">
+            <mat-form-field class="gen-wid">
+              <input matInput type="text" floatPlaceholder="never" formControlName="profession" [(ngModel)]="personalInfor.profession">
+              <mat-error>{{errorData?.profession}}</mat-error>
+            </mat-form-field>
+          </div>
+        </mat-list-item>
+
+        <mat-list-item class="item-custom hobby-item">
+          <div class="f-left">兴趣爱好</div>
+          <div class="f-right">
+            <mat-form-field class="gen-wid">
+              <mat-chip-list #chipList formControlName="hobby" [(ngModel)]="personalInfor.hobby">
+                <mat-chip style="margin:5px;" selected="true" color="accent" *ngFor="let item of hobby" [selectable]="selectable" [removable]="removable" (removed)="removeHobby(item)">
+                  {{item}}
+                  <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+                </mat-chip>
+                <input placeholder="hobby..." [matChipInputFor]="chipList" [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="addOnBlur"
+                  (matChipInputTokenEnd)="addHobby($event)" />
+              </mat-chip-list>
+            </mat-form-field>
+          </div>
+        </mat-list-item>
+      </form>  
+    </mat-list>
+  </mat-card-content>
+</mat-card>
