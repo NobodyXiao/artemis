@@ -27,13 +27,17 @@ export class PersonalInforComponent implements OnInit, AfterViewChecked{
   personalInforForm:FormGroup;
   personalInforOrg:any = {};
   personalInfor:any = {
-    nickName:'',
+    nickname:'',
     sex:0,
-    birthday:'',
+    birth:'',
     livePlace:'',
     profession:'',
     hobby:this.hobby,
-    id:''
+    id:'',
+    email:'',
+    avatar:'',
+    username:'',
+    phone:''
   };
   maxDate: Date = new Date();
   errorData: any = {};
@@ -54,23 +58,24 @@ export class PersonalInforComponent implements OnInit, AfterViewChecked{
     this.personalInfor = this.userInforObj;
     this.personalInfor.sex = this.userInforObj.sex.toString();
     this.personalInforOrg = Object.assign({}, this.personalInfor);
+    console.log('123', this.personalInfor);
     this.buildForm();
-
   }
   // 构建form
   buildForm(): void {
     this.personalInforForm = this._formBuilder.group({
-      'nickName': [this.personalInfor.nickName, [Validators.minLength(2)]],
+      'nickname': [this.personalInfor.nickname, [Validators.minLength(2)]],
       'sex': [this.personalInfor.sex],
-      'birthday': { disabled: true, value: this.personalInfor.birthday},
+      'birth': { disabled: true, value: this.personalInfor.birth},
       'livePlace': [this.personalInfor.livePlace],
       'profession': [this.personalInfor.profession],
-      'hobby':[this.personalInfor.hobby]}, 
+      'hobby':[this.personalInfor.hobby],
+      'email':[this.personalInfor.email, ValidationService.emailValidator],
+      'phone':[this.personalInfor.phone, ValidationService.cellPhoneValidator]}, 
       {validator: ValidationService.equalDisabledValidator(this.personalInforOrg)});
     //订阅表单字段的改变
     ValidationService.validateFieldChange(this.personalInforForm).subscribe(
       res => {
-        
         this.httpRequestCallbackError = false;
         this.errorData = res;
         this.hasChanged = !DistinctUntilChangedService.compare(this.personalInfor, this.personalInforOrg);

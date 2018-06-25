@@ -22,8 +22,8 @@ const APP_ROUTES: Routes = [
     {
       path: 'personal',
       loadChildren: 'app/components/personal-page/personal-page.module#PersonalPageModule',
-      // canActivate: [AuthGuard],
-      // canActivateChild: [AuthGuard]
+      canActivate: [AuthGuard],
+      canActivateChild: [AuthGuard]
     }
     // {
     //   path: 'setpassword',

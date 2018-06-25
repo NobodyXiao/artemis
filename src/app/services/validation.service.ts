@@ -5,6 +5,7 @@ import { Observable } from 'rxjs/Observable';
 export class ValidationService {
 
   constructor() { }
+  
   // 产生错误信息的函数
   static getValidatorErrorMessage(validatorName: string, validatorValue?: any) {
     const config = {
@@ -12,18 +13,21 @@ export class ValidationService {
       'minlength': `Min length ${validatorValue.requiredLength} characters`,
       'maxlength': `Max length ${validatorValue.requiredLength} characters`,
       'invalidEmailAddress': 'Invalid Email Address',
+      'invalidCellPhone': 'Invalid cell phone'
     };
     return config[validatorName];
   }
+
   // 校验邮箱格式
   static emailValidator(control) {
     // tslint:disable-next-line:max-line-length
-    if (control.value && control.value.match(/[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/i)) {
+    if (control.value && control.value.match(/^[a-zA-Z0-9_.-]+@[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)*\.[a-zA-Z0-9]{2,6}$/i)) {
       return null;
     } else {
       return { 'invalidEmailAddress': true };
     }
   }
+
   //订阅校验字段的修改
   static validateFieldChange(fromGroup: FormGroup | any) {
     return Observable.create(observer => {
@@ -123,9 +127,22 @@ export class ValidationService {
       }
     }
   }
+
   static setErrors(formGroup: FormGroup, errorData: any) {
     for(let fieldName in errorData) {
       formGroup.controls[fieldName].setErrors({fieldName: true});
     }
+  }
+
+  //校验cell phone
+  static cellPhoneValidator(control) {
+    if (control.value) {
+      if (control.value.match(/^[0-9][0-9\s-]*$/)) {
+        return null;
+      } else {
+        return { 'invalidCellPhone': true };
+      }
+    }
+    return null;
   }
 }
