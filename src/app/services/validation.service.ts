@@ -145,4 +145,16 @@ export class ValidationService {
     }
     return null;
   }
+  
+  //校验新密码和确认密码是否相同
+  static passwordMatchValidator(field1:string = 'newPassword', field2:string = 'confirmPassword') {
+    return (g): {[key: string]: any} => {
+      if ((g.get(field1).valid && g.get(field1).dirty) && (g.get(field2).valid && g.get(field2).dirty)) {
+        if (g.get(field1).value != g.get(field2).value) {
+          return {'mismatch': true};
+        }
+      }
+      return null;
+    }    
+  }
 }

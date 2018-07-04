@@ -1,0 +1,34 @@
+<div class="wrap-box">
+  <div class="personal-infor-box">
+    <div class="left-sidepart">
+      <div style="position:relative;" class="ava-box">  
+        <img [src]="avaUrl" alt="user-logo">
+        <span class="modify-ava" (click)="modifyAva()">修改头像</span>
+      </div>
+      <ul>
+        <li class="personal-item" *ngFor="let item of personalItemArr let itemCount = index">
+          <span (click)="addItemComponent(itemCount)" [ngClass]="{'activeItem':selecteditem === itemCount}">{{item}}</span>
+        </li>
+      </ul>
+    </div>
+    <div class="right-sidepart">
+      <ng-template #dmroom></ng-template>
+    </div>
+    <div class="change-ava" *ngIf="showModifyAvaBox">
+      <div>
+        <div style="height:60px;text-align: left;border-bottom: 1px solid gray;line-height: 60px;">上传头像</div>
+        <div class="image-wrapper" style="height: calc(100% - 120px);">
+          <a href="javascript:;" class="img-upload">
+            <input type="file" name="" id="" accept="image/png, image/jpeg" (change)="fileChangeListener($event)">点击这里上传头像
+          </a>
+          <img-cropper #cropper [image]="data" [settings]="cropperSettings"></img-cropper>
+          <br>
+        </div>
+        <div style="height:60px;text-align: right;">
+          <button mat-raised-button color="primary" style="margin-right: 20px;" (click)="uploadAva()">上传</button>
+          <button mat-raised-button color="primary" (click)="cancleUpload()">取消</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

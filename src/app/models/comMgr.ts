@@ -1,6 +1,6 @@
-import { PersonalSettingComponent } from '../components/personal-setting/personal-setting.component';
-import { PersonalInforComponent } from '../components/personal-infor/personal-infor.component';
-import { UoloThingsComponent } from '../components/uolo-things/uolo-things.component';
+import { PersonalSettingComponent } from '../components/personal-page/personal-setting/personal-setting.component';
+import { PersonalInforComponent } from '../components/personal-page/personal-infor/personal-infor.component';
+import { UoloThingsComponent } from '../components/personal-page/uolo-things/uolo-things.component';
 
 let coms = [
   PersonalInforComponent,

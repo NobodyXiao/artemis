@@ -1,0 +1,33 @@
+.personal-setting-card{
+  height: 100%;
+  width: 100%;
+  box-sizing: border-box;
+  .item-custom{
+    height:60px !important;
+  }
+  .f-left {
+    min-width: 100px;
+    text-align: left;
+  }
+  .f-right {
+    flex-grow: 1;
+    text-align: left;
+    .gen-wid {
+      width: 300px;
+      margin: 0;
+    }
+  }
+  mat-card-content{
+    padding:20px 50px;
+    height: 100%;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  .edit-custom{
+    font-size: 12px; 
+    color: #36c;
+  }
+  .edit-custom:hover{
+    cursor: pointer;
+  }
+}

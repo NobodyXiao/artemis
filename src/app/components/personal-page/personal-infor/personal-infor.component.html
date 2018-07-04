@@ -11,7 +11,7 @@
     <mat-list>
       <form [formGroup]="personalInforForm" autocomplete="off">
         <mat-list-item class="item-custom">
-          <div class="f-left">用户名</div>
+          <div class="f-left">昵称</div>
           <div class="f-right">
             <mat-form-field class="gen-wid">
               <input matInput type="text" floatPlaceholder="never" formControlName="nickname" [(ngModel)]="personalInfor.nickname" required>
@@ -62,6 +62,24 @@
           </div>
         </mat-list-item>
 
+        <mat-list-item class="item-custom">
+          <div class="f-left">邮箱</div>
+          <div class="f-right">
+            <mat-form-field class="gen-wid">
+              <input matInput type="text" floatPlaceholder="never" formControlName="email" [(ngModel)]="personalInfor.email">
+            </mat-form-field>
+          </div>
+        </mat-list-item>
+
+        <mat-list-item class="item-custom">
+          <div class="f-left">手机</div>
+          <div class="f-right">
+            <mat-form-field class="gen-wid">
+              <input matInput type="text" floatPlaceholder="never" formControlName="phone" [(ngModel)]="personalInfor.phone">
+            </mat-form-field>
+          </div>
+        </mat-list-item>
+
         <mat-list-item class="item-custom hobby-item">
           <div class="f-left">兴趣爱好</div>
           <div class="f-right">
@@ -72,29 +90,9 @@
                   {{item}}
                   <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
                 </mat-chip>
-                <input placeholder="hobby..." [matChipInputFor]="chipList" [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="addOnBlur"
-                  (matChipInputTokenEnd)="addHobby($event)" />
+                <input [placeholder]="hobby.length ? '' : 'hobby...' " [matChipInputFor]="chipList" [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                  [matChipInputAddOnBlur]="addOnBlur" (matChipInputTokenEnd)="addHobby($event)" />
               </mat-chip-list>
-            </mat-form-field>
-          </div>
-        </mat-list-item>
-
-        <mat-list-item class="item-custom">
-          <div class="f-left">邮箱</div>
-          <div class="f-right">
-            <mat-form-field class="gen-wid">
-              <input matInput type="text" floatPlaceholder="never" formControlName="email" [(ngModel)]="personalInfor.email">
-              <mat-error>{{errorData?.email}}</mat-error>
-            </mat-form-field>
-          </div>
-        </mat-list-item>
-
-        <mat-list-item class="item-custom">
-          <div class="f-left">手机</div>
-          <div class="f-right">
-            <mat-form-field class="gen-wid">
-              <input matInput type="text" floatPlaceholder="never" formControlName="phone" [(ngModel)]="personalInfor.phone">
-              <mat-error>{{errorData?.phone}}</mat-error>
             </mat-form-field>
           </div>
         </mat-list-item>

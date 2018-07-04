@@ -1,0 +1,130 @@
+.wrap-box{
+  height:100%;
+  width:100%;
+}
+.personal-infor-box{
+  min-height: calc(100% - 50px);
+  min-width:700px;
+  width:70%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  min-height: calc(100% - 90px);
+  height: auto;
+}
+.personal-infor-box>.left-sidepart{
+  float: left;
+  min-height:100%;
+  width:200px;
+  background: rgba(0,0,0,.12);
+  padding: 20px 10px;
+  box-sizing: border-box;
+}
+.left-sidepart>div{
+  height: 100px;
+  width: 100px;
+  margin: 0 auto;
+}
+.left-sidepart>div>img{
+  height: 100%;
+  width: 100%;
+}
+.left-sidepart>ul{
+  height: calc(100% - 140px);
+  width: calc(100% - 20px);
+  padding: 20px 0;
+  margin: 0 auto;
+}
+.left-sidepart>ul>li{
+  list-style-type:none;
+  width:100%;
+  height: 50px;
+  color: black;
+  text-align: center;
+}
+.personal-item>span:hover{
+  cursor: pointer;
+  color: #FD7E23;
+  font-weight: bold;
+}
+.right-sidepart{
+  float: left;
+  min-height:100%;
+  width:calc(100% - 200px);
+  min-width: 580px;
+}
+.activeItem{
+  color:#FD7E23;
+  font-weight: bold;
+}
+.modify-ava{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  font-size: 12px;
+  color: lightblue;
+  background: rgba(0,0,0,0.8);
+  transform: translate( -50%, -50%);
+  display: none;
+  cursor:pointer;
+}
+.ava-box:hover .modify-ava{
+  display: block;
+}
+.change-ava{
+  height: 100%;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: rgba(0,0,0,0.8);
+  text-align: center;
+  z-index: 1000;
+}
+.change-ava>div{
+  height: 600px;
+  width: 550px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate( -50%, -50%);
+  background: #fff;
+  padding: 30px;
+  box-sizing: border-box;
+}
+.image-wrapper{
+  img-cropper{
+    input{
+      display: none;
+    }
+    canvas{
+      position: relative;
+    }
+  }
+  .img-upload {
+    padding: 4px 10px;
+    height: 20px;
+    line-height: 20px;
+    position: relative;
+    cursor: pointer;
+    color: #888;
+    background: #fafafa;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    overflow: hidden;
+    display: inline-block;
+    *display: inline;
+    *zoom: 1 ;
+    text-decoration: none;
+    margin-top:10px;
+  }
+
+  .img-upload  input {
+    position: absolute;
+    opacity: 0;
+    filter: alpha(opacity=0);
+    cursor: pointer
+  }
+  
+}

@@ -1,0 +1,26 @@
+<mat-card class="personal-setting-card">
+  <mat-card-content>
+    <mat-list>
+        <mat-list-item class="item-custom">
+          <div class="f-left">密码</div>
+          <div class="f-right">
+            <mat-form-field class="gen-wid">
+              <input matInput type="text" [(ngModel)]="password" disabled >
+              <span style="color: rgba(0,0,0,0.38)">********</span>
+            </mat-form-field>
+            <span class="edit-custom" (click)="modifyPassword()">修改</span>
+          </div>
+        </mat-list-item>
+
+        <mat-list-item class="item-custom">
+          <div class="f-left">邮箱</div>
+          <div class="f-right">
+            <mat-form-field class="gen-wid">
+             <input matInput type="text" [(ngModel)]="email" disabled>
+            </mat-form-field>
+            <span class="edit-custom" (click)="modifyEmail()">修改</span>
+          </div>
+        </mat-list-item>
+    </mat-list>
+  </mat-card-content>
+</mat-card>

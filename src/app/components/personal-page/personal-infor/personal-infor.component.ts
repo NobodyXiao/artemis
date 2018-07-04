@@ -2,17 +2,17 @@ import { Component, ChangeDetectorRef, OnInit, ViewEncapsulation, AfterViewCheck
 import {MatChipInputEvent} from '@angular/material';
 import {ENTER, COMMA} from '@angular/cdk/keycodes';
 import { FormBuilder, FormGroup, Validators} from '@angular/forms';
-import { DialogService } from '../../services/dialog.service';
-import { ValidationService } from '../../services/validation.service'
+import { DialogService } from '../../../services/dialog.service';
+import { ValidationService } from '../../../services/validation.service'
 import { Router, ActivatedRoute, Params } from '@angular/router';
-import { AuthService } from '../../services/auth.service';
-import { DistinctUntilChangedService } from '../../services/distinct-until-changed-service.service';
+import { AuthService } from '../../../services/auth.service';
+import { DistinctUntilChangedService } from '../../../services/distinct-until-changed-service.service';
 
 @Component({
   selector: 'app-personal-infor',
   templateUrl: './personal-infor.component.html',
   styleUrls: ['./personal-infor.component.scss'],
-  encapsulation: ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.None,
 })
 export class PersonalInforComponent implements OnInit, AfterViewChecked{
 
@@ -51,14 +51,13 @@ export class PersonalInforComponent implements OnInit, AfterViewChecked{
     private _router: Router,
     private _route: ActivatedRoute,
     private _authService: AuthService
-  ) { }
+  ) {}
 
   ngOnInit() {
     this.userInforObj =JSON.parse(localStorage.getItem('user'));
     this.personalInfor = this.userInforObj;
     this.personalInfor.sex = this.userInforObj.sex.toString();
     this.personalInforOrg = Object.assign({}, this.personalInfor);
-    console.log('123', this.personalInfor);
     this.buildForm();
   }
   // 构建form

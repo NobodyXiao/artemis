@@ -82,7 +82,6 @@ export class AuthService {
 		let requestUrl = this._appconfig.apiAuth + '/admin/forgetpassword/sendemail';
 		let searchParams = new URLSearchParams();
 		searchParams.set('loginname', loginname);
-
 		return this._authHttp.post(requestUrl, searchParams.toString(), {headers: this.header}).toPromise();
 	}
 	// 修改个人信息
@@ -92,6 +91,20 @@ export class AuthService {
 		if(tokenNotExpired('jwt')){
 			let requestUrl = this._appconfig.apiAuth + '/user/profile/save';
 			return this._authHttp.post(requestUrl, JSON.stringify(postData), options);
+		} else {
+			return new Observable(observer => { observer.next(this.response); observer.complete();});
+		}
+	}
+
+	// 上传头像
+	uploadProfilePhoto(img:any): Observable<any>{
+		if(tokenNotExpired('jwt')){
+			let requestUrl = this._appconfig.apiAuth + '/user/profile/avatar/upload';
+			let searchParams = new URLSearchParams();
+			let userId = JSON.parse(localStorage.getItem('user'))['id'];
+			searchParams.set('id', userId);
+			searchParams.set('img', img);
+			return this._authHttp.post(requestUrl, searchParams.toString(), {headers: this.header});
 		} else {
 			return new Observable(observer => { observer.next(this.response); observer.complete();});
 		}

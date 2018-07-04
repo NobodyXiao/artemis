@@ -10,7 +10,7 @@ import { MaterialModule } from './material.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { APP_CONFIG, APP_DI_CONFIG } from './app-config';
 import { AuthHttp, AuthConfig } from 'angular2-jwt';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { CanDeactivateGuard } from '../app/guards/can-deactivate.guard';
 import { AuthGuard } from '../app/guards/auth-guard.service';
 import { WindowRefService } from '../../src/app/services/window-ref.service';
@@ -18,6 +18,7 @@ import { HomepageModule } from '../app/components/home-page/home-page.module';
 import { AppNavigationService } from '../../src/app/services/app-navigation.service';
 import { DialogService } from '../../src/app/services/dialog.service';
 import { AuthService } from '../app/services/auth.service';
+import { CustomInterceptor } from './custom.interceptor';
 
 export function authHttpServiceFactory(http: Http) {
   return new AuthHttp(new AuthConfig({tokenName: 'jwt', noJwtError: true}), http);
@@ -49,7 +50,12 @@ export function authHttpServiceFactory(http: Http) {
     WindowRefService,
     AppNavigationService,
     DialogService,
-    AuthService
+    AuthService,
+    {
+      provide:HTTP_INTERCEPTORS,
+      useClass: CustomInterceptor,
+      multi:true
+    }
   ],
   bootstrap: [AppComponent]
 })
