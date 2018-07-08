@@ -1,18 +1,17 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Router, ActivatedRoute, Params, NavigationExtras } from '@angular/router';
 import { Account } from '../../../models/account';
-import { MatDialog, MatDialogRef, MatDialogConfig} from '@angular/material'
+import { MatDialogRef } from '@angular/material'
 import { FormGroup, FormBuilder, Validators} from '@angular/forms';
 import { ValidationService } from '../../../services/validation.service'
 import { DialogService } from '../../../services/dialog.service';
-import { Location } from '@angular/common';
 import { ForgetPasswordComponent } from '../forget-password/forget-password.component';
 import { AuthService } from '../../../services/auth.service';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css'],
+  styleUrls: ['./login.component.scss'],
   providers: [DialogService, ValidationService, AuthService],
   host: {'(document:keyup)': 'onKeyUp($event)'},
   encapsulation: ViewEncapsulation.None
@@ -36,10 +35,8 @@ export class LoginComponent implements OnInit {
   redirectUrl: string = '';
 
   constructor(
-    private _mdialog: MatDialog,
     private _dialogService: DialogService,
     private _formBuilder: FormBuilder,
-    private _ValidationService: ValidationService,
     private _router: Router,
     private _route: ActivatedRoute,
     private _authService: AuthService
@@ -149,7 +146,8 @@ export class LoginComponent implements OnInit {
       this.isRequestingForLogin = true;
       this._authService.login(user).subscribe(
         res => {
-          let result = res.json();
+          let result = res;
+          //let result = res.json();
           if (result.code == 0) {
             //登录成功，导航到菜单页面
             localStorage.setItem('jwt', result.token.token);
@@ -166,6 +164,7 @@ export class LoginComponent implements OnInit {
             this.error = '用户名或密码错误!'
           }
           this.isRequestingForLogin = false;
+          
         },
         error => {
           this.error = '网络请求出错，等会再试吧!';

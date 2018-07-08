@@ -7,7 +7,7 @@
 </mat-toolbar>
 
 <mat-card class="personal-infor-card">
-  <mat-card-content>
+  <mat-card-content class="personal-infor-content">
     <mat-list>
       <form [formGroup]="personalInforForm" autocomplete="off">
         <mat-list-item class="item-custom">
@@ -35,14 +35,16 @@
           <div class="f-left">出生年月</div>
           <div class="f-right">
             <mat-form-field class="gen-wid">
-              <input matInput [max]="maxDate" placeholder="Choose your birthday" [matDatepicker]="picker" formControlName="birth" [(ngModel)]="personalInfor.birth">
+              <input matInput [max]="maxDate" placeholder="Choose your birthday" [matDatepicker]="picker" 
+                     formControlName="birth" [(ngModel)]="personalInfor.birth" (dateChange)="birthChange('change', $event)">
               <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-              <mat-datepicker matDatepicker #picker disabled="false"></mat-datepicker>
+              <mat-datepicker matDatepicker #picker></mat-datepicker>
+              <mat-error>{{birthFormatError}}</mat-error>
             </mat-form-field>
           </div>
         </mat-list-item>
 
-        <mat-list-item class="item-custom">
+        <!-- <mat-list-item class="item-custom">
           <div class="f-left">现居地</div>
           <div class="f-right">
             <mat-form-field class="gen-wid">
@@ -50,7 +52,7 @@
               <mat-error>{{errorData?.livePlace}}</mat-error>
             </mat-form-field>
           </div>
-        </mat-list-item>
+        </mat-list-item> -->
 
         <mat-list-item class="item-custom">
           <div class="f-left">职业</div>
@@ -67,6 +69,7 @@
           <div class="f-right">
             <mat-form-field class="gen-wid">
               <input matInput type="text" floatPlaceholder="never" formControlName="email" [(ngModel)]="personalInfor.email">
+              <mat-error>{{errorData?.email}}</mat-error>
             </mat-form-field>
           </div>
         </mat-list-item>
@@ -76,11 +79,12 @@
           <div class="f-right">
             <mat-form-field class="gen-wid">
               <input matInput type="text" floatPlaceholder="never" formControlName="phone" [(ngModel)]="personalInfor.phone">
+              <mat-error>{{errorData?.phone}}</mat-error>
             </mat-form-field>
           </div>
         </mat-list-item>
 
-        <mat-list-item class="item-custom hobby-item">
+        <!-- <mat-list-item class="item-custom hobby-item">
           <div class="f-left">兴趣爱好</div>
           <div class="f-right">
             <mat-form-field class="gen-wid">
@@ -95,7 +99,7 @@
               </mat-chip-list>
             </mat-form-field>
           </div>
-        </mat-list-item>
+        </mat-list-item> -->
       </form>
     </mat-list>
   </mat-card-content>

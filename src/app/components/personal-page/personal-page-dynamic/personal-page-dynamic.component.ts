@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewEncapsulation, ViewChild, ViewContainerRef} from '@angular/core';
-import {ComponentFactoryResolver} from '@angular/core';
+import { ComponentFactoryResolver } from '@angular/core';
 import { coms } from '../../../models/comMgr';
 import { ImageCropperComponent, CropperSettings } from "ngx-img-cropper";
 import { AuthHttp, tokenNotExpired } from 'angular2-jwt';
@@ -25,7 +25,7 @@ export class PersonalPageDynamicComponent implements OnInit{
   public backRouterLink: string;
   isUpLoadSuccess:boolean = false;
   //avaUrl:string = '/assets/userLogo.png';
-  avaUrl:string = 'https://api.echoface.cn/user/profile/avatar';
+  avaUrl:string = 'https://api.echoface.cn/user/profile/avatar?sz=middle';
 
   @ViewChild('cropper', undefined)cropper:ImageCropperComponent;
 
@@ -101,10 +101,11 @@ export class PersonalPageDynamicComponent implements OnInit{
     if (this.isUpLoadSuccess) {
       this._authService.uploadProfilePhoto(base64ImageData).subscribe(
         res => {
-          let result = res.json();
+          let result = res;
           if (result.code == 0) {
             if (this.data.image) {
               this.avaUrl = this.data.image;
+              this._authService.changeAvatar(this.avaUrl);
             }
             this.showModifyAvaBox = false;
           } else {

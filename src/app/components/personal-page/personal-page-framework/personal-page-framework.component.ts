@@ -1,5 +1,4 @@
 import { Component, OnInit, ViewEncapsulation} from '@angular/core';
-import { PersonalPageDynamicComponent } from '../personal-page-dynamic/personal-page-dynamic.component';
 
 @Component({
   selector: 'app-personal-page-framework',

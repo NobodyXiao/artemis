@@ -13,7 +13,7 @@ import { ChangePasswordComponent } from './change-password/change-password.compo
 import { ChangeEmailComponent } from './change-email/change-email.component';
 import { PersonalPageFrameworkComponent } from './personal-page-framework/personal-page-framework.component';
 import { PersonalPageDynamicComponent } from './personal-page-dynamic/personal-page-dynamic.component';
-import { ImageCropperComponent, CropperSettings } from "ngx-img-cropper";
+import { ImageCropperModule } from 'ngx-img-cropper'
 
 export const PERSONALPAGE_ROUTES: Routes = [
   {
@@ -36,9 +36,10 @@ export const PERSONALPAGE_ROUTES: Routes = [
     FormsModule,
     ReactiveFormsModule,
     DialogModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    ImageCropperModule
   ],
-  declarations: [ ImageCropperComponent, PersonalPageDynamicComponent, PersonalPageDynamicHostDirective, ...importComs, ChangePasswordComponent, ChangeEmailComponent, PersonalPageFrameworkComponent],
+  declarations: [ PersonalPageDynamicComponent, PersonalPageDynamicHostDirective, ...importComs, ChangePasswordComponent, ChangeEmailComponent, PersonalPageFrameworkComponent],
   providers: [ ],
   entryComponents:[ ...importComs ]
 })

@@ -1,5 +1,6 @@
 import { Inject, Injectable } from '@angular/core';
 import { Http, URLSearchParams, Headers, Response, ResponseOptions } from '@angular/http';
+import { HttpClientModule, HttpClient, HttpHeaders} from '@angular/common/http'
 import { AuthHttp, tokenNotExpired } from 'angular2-jwt';
 import { GetTokenService } from './get-token.service';
 
@@ -10,20 +11,33 @@ import { IappConfig } from '../../app/iapp-config';
 import { Account } from '../models/account';
 import { Observable }   from 'rxjs/Observable';
 import 'rxjs/add/operator/toPromise';
+import { Subject } from 'rxjs/Subject';
 
 @Injectable()
 export class AuthService {
 
 	response: Response = new Response(new ResponseOptions({body: '{"success":false, "unauthorized":true}'}));
-	header:Headers  = new Headers({'Content-Type': 'application/x-www-form-urlencoded;  charset=UTF-8'});
+	defaultHeader: HttpHeaders = new HttpHeaders({'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'});
+	userAvatarSubject = new Subject<any>();
 
   constructor(
+		private _httpClient: HttpClient,
     private _http: Http,
 		@Inject(APP_CONFIG) private _appconfig: IappConfig, 
 		private _authHttp: AuthHttp,
     private _router: Router,
     private _GetTokenService:GetTokenService
 	) {}
+
+	// 更换头像
+	changeAvatar(data:string){
+		this.userAvatarSubject.next(data);
+	}
+
+	// 获取更换的头像
+	getUpdateAvatar(): Observable<any>{
+		return this.userAvatarSubject.asObservable();
+	}
  
 	//登录
 	login(user: Account): Observable<any> {
@@ -31,7 +45,7 @@ export class AuthService {
 		let searchParams = new URLSearchParams();
 		searchParams.set('username', user.username);
 		searchParams.set('password', user.password);
-		return this._http.post(requestUrl, searchParams.toString(), {headers: this.header});
+		return this._httpClient.post(requestUrl, searchParams.toString(), {headers: this.defaultHeader});
 	}
 
   register(user: Account): Observable<any> {
@@ -40,7 +54,7 @@ export class AuthService {
 		searchParams.set('username', user.username);
     searchParams.set('password', user.password);
     searchParams.set('email', user.email);
-		return this._http.post(requestUrl, searchParams.toString(), {headers: this.header});
+		return this._httpClient.post(requestUrl, searchParams.toString(), {headers: this.defaultHeader});
   }
 	//退出登录
 	logout() {
@@ -52,12 +66,12 @@ export class AuthService {
 	//修改密码
 	changePassword(pwd: any): Promise<any> {
 		if (tokenNotExpired('jwt')) {
-      let requestUrl = this._appconfig.apiAuth + '/admin/auth/changepwd';
+      let requestUrl = this._appconfig.apiAuth + '/au/reset/passwd';
       let searchParams = new URLSearchParams();
-      searchParams.set('oldPassword', pwd.oldPassword);
-      searchParams.set('newPassword', pwd.newPassword);
-			searchParams.set('confirmPassword', pwd.confirmPassword);
-      return this._authHttp.post(requestUrl, searchParams.toString(), {headers: this.header}).toPromise();
+      searchParams.set('old', pwd.oldPassword);
+      searchParams.set('new', pwd.newPassword);
+			searchParams.set('confirm', pwd.confirmPassword);
+      return this._httpClient.post(requestUrl, searchParams.toString(), {headers: this.defaultHeader}).toPromise();
     } else {
       return Promise.resolve(this.response);
     }
@@ -71,7 +85,7 @@ export class AuthService {
 		let searchParams = new URLSearchParams();
 		searchParams.set('loginname', loginname);
 
-		return this._authHttp.post(requestUrl, searchParams.toString(), {headers: this.header}).toPromise();
+		return this._httpClient.post(requestUrl, searchParams.toString(), {headers: this.defaultHeader}).toPromise();
     }
 
 	/**
@@ -82,15 +96,14 @@ export class AuthService {
 		let requestUrl = this._appconfig.apiAuth + '/admin/forgetpassword/sendemail';
 		let searchParams = new URLSearchParams();
 		searchParams.set('loginname', loginname);
-		return this._authHttp.post(requestUrl, searchParams.toString(), {headers: this.header}).toPromise();
+		return this._httpClient.post(requestUrl, searchParams.toString(), {headers: this.defaultHeader}).toPromise();
 	}
 	// 修改个人信息
 	modifyPersonalInfor(postData:any): Observable<any>{
-		let header:Headers  = new Headers({'Content-Type': 'application/json'});
-		let options = new ResponseOptions({headers:header});
+		let header: HttpHeaders = new HttpHeaders({'Content-Type': 'application/json'});
 		if(tokenNotExpired('jwt')){
 			let requestUrl = this._appconfig.apiAuth + '/user/profile/save';
-			return this._authHttp.post(requestUrl, JSON.stringify(postData), options);
+			return this._httpClient.post(requestUrl, JSON.stringify(postData), {headers: header});
 		} else {
 			return new Observable(observer => { observer.next(this.response); observer.complete();});
 		}
@@ -104,7 +117,7 @@ export class AuthService {
 			let userId = JSON.parse(localStorage.getItem('user'))['id'];
 			searchParams.set('id', userId);
 			searchParams.set('img', img);
-			return this._authHttp.post(requestUrl, searchParams.toString(), {headers: this.header});
+			return this._httpClient.post(requestUrl, searchParams.toString(), {headers: this.defaultHeader});
 		} else {
 			return new Observable(observer => { observer.next(this.response); observer.complete();});
 		}

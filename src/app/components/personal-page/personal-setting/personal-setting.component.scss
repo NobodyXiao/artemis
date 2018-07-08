@@ -1,6 +1,7 @@
 .personal-setting-card{
-  height: 100%;
-  width: 100%;
+  min-height: 100%;
+  min-width: 100%;
+  margin: 0;
   box-sizing: border-box;
   .item-custom{
     height:60px !important;
@@ -17,10 +18,11 @@
       margin: 0;
     }
   }
-  mat-card-content{
+  .personal-setting-content{
     padding:20px 50px;
-    height: 100%;
-    width: 100%;
+    min-height: 100%;
+    min-width: 100%;
+    box-shadow: none !important;
     box-sizing: border-box;
   }
   .edit-custom{

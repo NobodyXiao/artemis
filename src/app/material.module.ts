@@ -21,7 +21,7 @@ import {
   MatMenuModule,
   MatGridListModule,
   MatDialogModule,
-  MatChipsModule
+  MatChipsModule,
   // and so on...
 } from '@angular/material';
 const MAT_MODULES  = [

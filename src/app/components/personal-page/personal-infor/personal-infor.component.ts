@@ -12,12 +12,10 @@ import { DistinctUntilChangedService } from '../../../services/distinct-until-ch
   selector: 'app-personal-infor',
   templateUrl: './personal-infor.component.html',
   styleUrls: ['./personal-infor.component.scss'],
-  encapsulation: ViewEncapsulation.None,
+  encapsulation: ViewEncapsulation.None
 })
 export class PersonalInforComponent implements OnInit, AfterViewChecked{
 
-  isEditing:boolean = false;
-  visible: boolean = true;
   selectable: boolean = true;
   removable: boolean = true;
   addOnBlur: boolean = true;
@@ -30,9 +28,9 @@ export class PersonalInforComponent implements OnInit, AfterViewChecked{
     nickname:'',
     sex:0,
     birth:'',
-    livePlace:'',
+    // livePlace:'',
     profession:'',
-    hobby:this.hobby,
+    // hobby:this.hobby,
     id:'',
     email:'',
     avatar:'',
@@ -43,6 +41,7 @@ export class PersonalInforComponent implements OnInit, AfterViewChecked{
   errorData: any = {};
   userInforObj:any = {};
   hasChanged:boolean = false;
+  birthFormatError:string = '';
 
   constructor(
     private _formBuilder: FormBuilder,
@@ -63,13 +62,13 @@ export class PersonalInforComponent implements OnInit, AfterViewChecked{
   // 构建form
   buildForm(): void {
     this.personalInforForm = this._formBuilder.group({
-      'nickname': [this.personalInfor.nickname, [Validators.minLength(2)]],
       'sex': [this.personalInfor.sex],
-      'birth': { disabled: true, value: this.personalInfor.birth},
-      'livePlace': [this.personalInfor.livePlace],
+      // 'hobby':[this.personalInfor.hobby],
+      'birth': { value: this.personalInfor.birth},
+      // 'livePlace': [this.personalInfor.livePlace],
       'profession': [this.personalInfor.profession],
-      'hobby':[this.personalInfor.hobby],
-      'email':[this.personalInfor.email, ValidationService.emailValidator],
+      'nickname': [this.personalInfor.nickname, [Validators.minLength(2)]],
+      'email':{ disabled:true,value: this.personalInfor.email},
       'phone':[this.personalInfor.phone, ValidationService.cellPhoneValidator]}, 
       {validator: ValidationService.equalDisabledValidator(this.personalInforOrg)});
     //订阅表单字段的改变
@@ -90,7 +89,7 @@ export class PersonalInforComponent implements OnInit, AfterViewChecked{
     let input = event.input;
     let value = event.value;
 
-    // Add our fruit
+    // Add our hobby
     if ((value || '').trim()) {
       this.hobby.push(value.trim());
     }
@@ -112,26 +111,26 @@ export class PersonalInforComponent implements OnInit, AfterViewChecked{
   // 保存修改信息
   save(){
     if (this.personalInforForm.valid) {
-      this.personalInfor.sex = Number(this.personalInfor.sex);
+      let postData = Object.assign({}, this.personalInfor);
+      postData.sex = Number(postData.sex);
       if (Object.keys(this.personalInfor).length > 0) {
         //submit
-        this._authService.modifyPersonalInfor(this.personalInfor).subscribe(
+        this._authService.modifyPersonalInfor(postData).subscribe(
           res => {
             try {
-              let result = res.json();
-              if (result.code === 0) {
+              if (res.code === 0) {
                 //更新原始数据
                 this.personalInforOrg = Object.assign(this.personalInforOrg, this.personalInfor);
                 // 更新本地的localstorage
                 localStorage.setItem('user', JSON.stringify(this.personalInfor));
-                this.personalInforForm.updateValueAndValidity();
                 this.hasChanged = false;
+                this.personalInforForm.updateValueAndValidity();
                 return Promise.resolve({success: true});
-              } else if (result.unauthorized) {
+              } else if (res.unauthorized) {
                 this._router.navigate(['/admin'], {queryParams: {backRouterLink: this._router.url}});
               } else {
-                this._dialogService.alert("Error", result.msg);
-                return Promise.resolve({success: false, msg: result.msg});
+                this._dialogService.alert("Error", res.msg);
+                return Promise.resolve({success: false, msg: res.msg});
               }
             } catch (err) {
               this._dialogService.alert("Error", err);
@@ -150,7 +149,17 @@ export class PersonalInforComponent implements OnInit, AfterViewChecked{
       this._dialogService.alert("Error", 'Form fields may not be submitted with invalid values');
       return Promise.resolve({success: false, msg: 'Form fields may not be submitted with invalid values'});
     }
+  }
 
+  //  生日更改
+  birthChange(m: string, event) {
+    this.birthFormatError = '';
+    let date:Date = event.value;
+    if (event.value instanceof Date) {
+      this.personalInfor.birth = date.toISOString();
+    } else {
+      this.birthFormatError = 'birth format error';
+    }
   }
 
   ngAfterViewChecked() {

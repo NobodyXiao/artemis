@@ -20,7 +20,7 @@ const APP_ROUTES: Routes = [
       loadChildren: 'app/components/detail-page/detail-page.module#DetailpageModule'
     },
     {
-      path: 'personal',
+      path: 'profile',
       loadChildren: 'app/components/personal-page/personal-page.module#PersonalPageModule',
       canActivate: [AuthGuard],
       canActivateChild: [AuthGuard]
@@ -36,7 +36,7 @@ const APP_ROUTES: Routes = [
     // {
     //   path: 'r',
     //   loadChildren: 'app/components/respondent-participate-survey/respondent-participate-survey.module#RespondentParticipateSurveyModule'
-    // },
+    // }, 
 ];
 
 const appRouting = RouterModule.forRoot(APP_ROUTES);

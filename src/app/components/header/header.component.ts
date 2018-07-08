@@ -1,12 +1,11 @@
-import { Component, OnInit, ViewEncapsulation} from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, OnDestroy} from '@angular/core';
 import { Observable } from 'rxjs/RX';
-import { Http, URLSearchParams, Headers, Response, ResponseOptions } from '@angular/http';
 import { Router, ActivatedRoute, Params, NavigationExtras } from '@angular/router';
 import { AppNavigationService } from '../../services/app-navigation.service';
-import { DialogService } from '../../services/dialog.service';
 import { AuthService } from '../../services/auth.service';
 import { tokenNotExpired } from 'angular2-jwt';
 import {Location} from '@angular/common';
+import { Subscription } from 'rxjs/Subscription';
 
 @Component({
   selector: 'app-header',
@@ -14,23 +13,37 @@ import {Location} from '@angular/common';
   styleUrls: ['./header.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent implements OnInit, OnDestroy {
 
   constructor(
     private _router: Router,
     private _route: ActivatedRoute,
     public _appNavigationService: AppNavigationService,
-    private _dialogService: DialogService,
     private _authService: AuthService,
     public Location: Location
   ) { }
 
-  userName: string = 'user';
+  userName: string = '';
   scrollHeight: number = 0;
   public navigationExtras: NavigationExtras;
   public backRouterLink: string;
   isLogin:boolean = false;
+  userAvatar:string = '../../../assets/userLogo.png';
+  userAvatarSubscription : Subscription;
+
   ngOnInit() {
+
+    if (tokenNotExpired('jwt')) {
+      this.userAvatar = 'https://api.echoface.cn/user/profile/avatar?sz=middle';
+      this.isLogin = true;
+    }
+
+    this.userAvatarSubscription = this._authService.getUpdateAvatar().subscribe(
+      res => {
+        this.userAvatar = res;
+      }
+    );
+
     Observable.fromEvent(window,'scroll').subscribe(
       (event) => {
         const h = document.documentElement.clientHeight;
@@ -39,12 +52,9 @@ export class HeaderComponent implements OnInit {
         this.scrollHeight = scrollTop;
       }
     )
-
-    if (localStorage.getItem('username') !== undefined) {
-      this.userName = JSON.parse(localStorage.getItem('user')).nickname;
-    }
-    if (tokenNotExpired('jwt')) {
-      this.isLogin = true;
+    let userProfile = localStorage.getItem('user');
+    if (userProfile) {
+      this.userName = JSON.parse(userProfile)['nickname'];
     }
     // gonghuan: 这里对于header而言，没有 queryParams 可观察对象， 所以不会从路由中获取到这些数据
     // 对于home页面，如果是用户输入的地址， 这里的queryparams为空
@@ -100,7 +110,7 @@ export class HeaderComponent implements OnInit {
   }
 
   routerToProfilePage() {
-    this._router.navigate(['/personal']);
+    this._router.navigate(['/profile']);
   }
   onLogin() {
     this._router.navigate(['/login'], {
@@ -113,5 +123,11 @@ export class HeaderComponent implements OnInit {
   onLogOut() {
     this._authService.logout();
     this.isLogin = false;
+    this.userAvatar = '../../../assets/userLogo.png';
+    window.location.reload();
+  }
+
+  ngOnDestroy () {
+    this.userAvatarSubscription.unsubscribe();
   }
 } 

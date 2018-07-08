@@ -1,9 +1,7 @@
 import { Component, OnInit, ViewEncapsulation} from '@angular/core';
-import { WindowRefService } from '../../services/window-ref.service';
 import { Router, ActivatedRoute, Params, NavigationExtras } from '@angular/router';
 import { AppNavigationService } from '../../services/app-navigation.service';
 import { DialogService } from '../../services/dialog.service';
-import { AuthHttp, tokenNotExpired } from 'angular2-jwt';
 
 @Component({
   selector: 'app-home-page',
@@ -15,11 +13,9 @@ import { AuthHttp, tokenNotExpired } from 'angular2-jwt';
 
 export class HomePageComponent implements OnInit {
   constructor(
-    private winRef: WindowRefService,
     private _router: Router,
     private _route: ActivatedRoute,
     public _appNavigationService: AppNavigationService,
-    private _dialogService: DialogService
   ) {}
   public navigationExtras: NavigationExtras;
   public backRouterLink: string;

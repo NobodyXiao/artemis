@@ -17,7 +17,7 @@
   </div>
   <div class="header-right">
     <a href="javascript:void(0);">
-      <img src="../../../assets/userLogo.png" alt="userLogo">
+      <img [src]="userAvatar" alt="userAvatar" style="border-radius:20px;">
     </a>
     <span style="color:#fff;" *ngIf="isLogin">{{userName}}</span>
     <span style="color:#fff;" *ngIf="!isLogin" (click)="onLogin()">Login</span>

@@ -1,10 +1,8 @@
 import { Component, OnInit, ViewEncapsulation} from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
-import { WindowRefService } from '../../services/window-ref.service';
 import { Router, ActivatedRoute, Params, NavigationExtras } from '@angular/router';
 import { AppNavigationService } from '../../services/app-navigation.service';
 import { DialogService } from '../../services/dialog.service';
-import { MarkdownService } from 'angular2-markdown';
 
 @Component({
   selector: 'app-detail-page',
@@ -22,12 +20,10 @@ export class DetailPageComponent implements OnInit {
   articleObj: any = {};
 
   constructor(
-    private winRef: WindowRefService,
     private _router: Router,
     private _route: ActivatedRoute,
     public _appNavigationService: AppNavigationService,
     private _dialogService: DialogService,
-    private _markdown: MarkdownService
   ) { 
   }
   public navigationExtras: NavigationExtras;

@@ -1,7 +1,6 @@
 import { Component, OnInit, ViewEncapsulation} from '@angular/core';
-import { DialogService } from '../../../services/dialog.service';
 import { Router, ActivatedRoute, Params, NavigationExtras } from '@angular/router';
-import { AuthHttp, tokenNotExpired } from 'angular2-jwt';
+import { tokenNotExpired } from 'angular2-jwt';
 
 @Component({
   selector: 'app-personal-setting',
@@ -17,7 +16,6 @@ export class PersonalSettingComponent implements OnInit {
   public backRouterLink: string;
 
   constructor(
-    private _dialogService: DialogService,
     private _router: Router,
     private _route: ActivatedRoute
   ) { }
@@ -42,7 +40,7 @@ export class PersonalSettingComponent implements OnInit {
   modifyPassword(){
     //  登陆状态允许修改密码，否则跳转至登陆页面
     if(tokenNotExpired('jwt')){
-      this._router.navigate(['/personal/modify-password'], this.navigationExtras);
+      this._router.navigate(['/profile/modify-password']);
     } else {
       this._router.navigate(['/login'], this.navigationExtras);
     }
@@ -52,7 +50,7 @@ export class PersonalSettingComponent implements OnInit {
   modifyEmail() {
     //  登陆状态允许修改邮箱，否则跳转至登陆页面
     if (tokenNotExpired('jwt')) {
-      this._router.navigate(['/personal/modify-email'], this.navigationExtras);
+      this._router.navigate(['/profile/modify-email']);
     } else {
       this._router.navigate(['/login'], this.navigationExtras);
     }
