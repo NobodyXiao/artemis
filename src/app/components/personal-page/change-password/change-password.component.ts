@@ -15,6 +15,8 @@ export class ChangePasswordComponent implements OnInit {
 
   passwordChangeForm: FormGroup;
   passwordDatas: any = {
+    captchaToken:'',
+    captchaImage:'',
     oldPassword: '',
     newPassword: '',
     confirmPassword: ''
@@ -23,6 +25,8 @@ export class ChangePasswordComponent implements OnInit {
   httpRequestSuccess: boolean = false;
   public backRouterLink: string;
   public navigationExtras: NavigationExtras;
+  identifyingCodeImg:string = '';
+  isShowIdentifyingCode:boolean = false;
 
   constructor(
     private _formBuilder: FormBuilder,
@@ -47,14 +51,17 @@ export class ChangePasswordComponent implements OnInit {
         }
       }
     });
-
     this.buildForm();
+    // 获取验证码
+    this.getIdentifyingCode();
   }
   /**
      * 构建表单
      */
   buildForm(): void {
     this.passwordChangeForm = this._formBuilder.group({
+      'captchaImage':[this.passwordDatas.captchaImage, Validators.required],
+      'captchaToken':[this.passwordDatas.captchaToken],
       'oldPassword': [this.passwordDatas.oldPassword, [Validators.required, Validators.minLength(6), Validators.maxLength(14)]],
       'passwordGroup': this._formBuilder.group({
         'newPassword': [this.passwordDatas.newPassword, [Validators.required, Validators.minLength(6), Validators.maxLength(14)]],
@@ -75,7 +82,7 @@ export class ChangePasswordComponent implements OnInit {
   /**
    * 修改密码
    */
-  edit() {
+  resetPassword() {
     // 验证新旧密码不能相等，且新密码必须等于确认密码 
     if (this.passwordDatas.oldPassword === this.passwordDatas.newPassword) {
       this._dialogService.alert('Error', '新老密码不能一致');
@@ -96,6 +103,8 @@ export class ChangePasswordComponent implements OnInit {
             } else if (res.unauthorized) {
               this._router.navigate(['/admin'], { queryParams: { backRouterLink: this._router.url } });
             } else {
+              this.passwordDatas.captchaImage = '';
+              this.getIdentifyingCode();
               if (res.message instanceof Object) {
                 //显示Form错误信息
                 this.errorData = res.message;
@@ -111,6 +120,33 @@ export class ChangePasswordComponent implements OnInit {
         }
       ).catch(err => { this._dialogService.alert('Error', err) });
     }
+  }
+
+  getIdentifyingCode(){
+    this._authService.getIdentifyingCodeImg().subscribe(
+      res => {
+          if (res.code === 0) {
+            this.identifyingCodeImg = res.image;
+            this.passwordDatas.captchaToken = res.token;
+            this.isShowIdentifyingCode = true;
+            return Promise.resolve({success: true});
+          } else if (res.unauthorized) {
+            this._router.navigate(['/admin'], {queryParams: {backRouterLink: this._router.url}});
+          } else {
+            this._dialogService.alert("Error", res.message);
+            return Promise.resolve({success: false, msg: res.message});
+          }
+        },
+      err => {
+        this._dialogService.alert('Error', err);
+        return Promise.resolve({success: false, msg: err});
+      }
+    );
+  }
+
+  reLoadIdentifyingCode(){
+    this.passwordDatas.captchaImage = '';
+    this.getIdentifyingCode();
   }
 }
 

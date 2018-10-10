@@ -1,3 +1,5 @@
+import { _MatAutocompleteMixinBase } from "@angular/material";
+
 export interface IappConfig {
   apiEndpoint: string,
   apiArticleDetail: string,
@@ -5,7 +7,7 @@ export interface IappConfig {
   apiPublicLens: string,
   apiWeather: string,
   apiUoloThings: string,
-  apiAuth: string,
+  apiBase: string,
   apiAuthLogin: string,
   apiAuthRegister: string,
   apiPublicThingsTodo: string

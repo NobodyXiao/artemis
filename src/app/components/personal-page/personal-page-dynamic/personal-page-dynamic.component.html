@@ -16,7 +16,7 @@
     </div>
     <div class="change-ava" *ngIf="showModifyAvaBox">
       <div>
-        <div style="height:60px;text-align: left;border-bottom: 1px solid gray;line-height: 60px;">上传头像</div>
+        <div class="upload-botton" style="height:60px;text-align: left;border-bottom: 1px solid gray;line-height: 60px;">上传头像</div>
         <div class="image-wrapper" style="height: calc(100% - 120px);">
           <a href="javascript:;" class="img-upload">
             <input type="file" name="" id="" accept="image/png, image/jpeg" (change)="fileChangeListener($event)">点击这里上传头像
@@ -24,7 +24,7 @@
           <img-cropper #cropper [image]="data" [settings]="cropperSettings"></img-cropper>
           <br>
         </div>
-        <div style="height:60px;text-align: right;">
+        <div style="height:60px;text-align: center;" class="operate-button">
           <button mat-raised-button color="primary" style="margin-right: 20px;" (click)="uploadAva()">上传</button>
           <button mat-raised-button color="primary" (click)="cancleUpload()">取消</button>
         </div>

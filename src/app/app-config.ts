@@ -2,8 +2,8 @@ import { InjectionToken } from '@angular/core';
 import { IappConfig } from './iapp-config';
 
 export const APP_DI_CONFIG: IappConfig = {
+  apiBase: 'https://api.echoface.cn',
   apiEndpoint: 'https://api.echoface.cn/lens',
-  apiAuth:'https://api.echoface.cn',
   apiArticleDetail:'https://api.echoface.cn/lens/p/article/detail',
   apiLensList:'https://api.echoface.cn/lens/lenslist',
   apiPublicLens: 'https://api.echoface.cn/lens/p/lenslist',

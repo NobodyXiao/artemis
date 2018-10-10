@@ -110,11 +110,13 @@ flex: 1 1 auto;
     margin: 4px 0 0 0;
   } 
   .header-right span{
-    display:none;
-    cursor: pointer;
+    margin-left:10px;
   }
   .header-search{
     display:none;
+  }
+  .header-right{
+    margin-right: 10px;
   }
 }
 @media screen and (min-width: 720px) and (max-width: 830px) {
@@ -125,6 +127,9 @@ flex: 1 1 auto;
   }
   .header-left img{
     height:48px;
+  }
+  .header-right{
+    margin-right: 10px;
   }
   .header-right img{
     height:36px;

@@ -8,3 +8,19 @@
     min-width: 700px;
   }
 }
+@media screen and (max-width: 960px) {
+  .detail-header{
+    .header{
+      width:100%;
+      min-width: 330px !important;
+    }
+  }
+}
+@media screen and (max-width: 320px) {
+  .detail-header{
+    .header{
+      width:100%;
+      min-width: 320px !important;
+    }
+  }
+}

@@ -1,17 +1,17 @@
 <div class="infor-box"  (click)="toDetailPage(item)" *ngFor="let item of articleInfor">
   <div  class="img-box">
-    <img src="../../../assets//inforImage.jpg" alt="xiaomi">
+    <img [src]="item.leading_img === '' ? 'http://img1.imgtn.bdimg.com/it/u=653391359,1419686006&fm=27&gp=0.jpg': item.leading_img" alt="leading_img">
   </div>
   <div class="text-box">
     <p class="title" style="overflow: hidden;text-overflow: ellipsis;display: -webkit-box;-webkit-line-clamp: 1;-webkit-box-orient: vertical;">{{item.title}}</p>
     <p class="instruction" style="overflow: hidden;text-overflow: ellipsis;display: -webkit-box;-webkit-line-clamp: 2;-webkit-box-orient: vertical;margin:0">{{item.summary}}</p>
   </div>
   <div class="subinfo-box">
-    <a class="avatar">
+    <!-- <a class="avatar">
       <span class="subinfo-face" style="margin-right: 5px;height:20px;float: left;">
         <img style="border-radius: 50%;width: 20px; height: 20px;" src="https://tvax4.sinaimg.cn/crop.0.0.512.512.50/4cd09971ly8fqlv4b84vbj20e80e8t96.jpg" alt="avatar">
       </span>
-    </a>
+    </a> -->
     <a class="name" style="text-decoration:none;color: #808080;">
       <span class="subinfo-name" style="margin-right: 12px;float: left;">
         {{item.author}}
@@ -25,11 +25,11 @@
       </em>
       <em>{{item.count}}</em>
     </span>
-    <span class="subinfo-box-right share">
+    <!-- <span class="subinfo-box-right share">
       <em>
-        <img src="../../../assets/images/转发.png" alt="转发">
+        <img src="../../../assets/images/收藏.png" alt="收藏">
       </em>
-      <em>{{item.count}}</em>
-    </span>
+      <em>{{item.collection}}</em>
+    </span> -->
   </div>
 </div>

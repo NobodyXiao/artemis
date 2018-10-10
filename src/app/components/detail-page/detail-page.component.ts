@@ -62,4 +62,7 @@ export class DetailPageComponent implements OnInit {
       }
     });
   }
+
+  likeAction(){
+  }
 }

@@ -22,7 +22,6 @@ export class AuthService {
 
   constructor(
 		private _httpClient: HttpClient,
-    private _http: Http,
 		@Inject(APP_CONFIG) private _appconfig: IappConfig, 
 		private _authHttp: AuthHttp,
     private _router: Router,
@@ -66,11 +65,13 @@ export class AuthService {
 	//修改密码
 	changePassword(pwd: any): Promise<any> {
 		if (tokenNotExpired('jwt')) {
-      let requestUrl = this._appconfig.apiAuth + '/au/reset/passwd';
+      let requestUrl = this._appconfig.apiBase + '/au/reset/passwd';
       let searchParams = new URLSearchParams();
       searchParams.set('old', pwd.oldPassword);
       searchParams.set('new', pwd.newPassword);
 			searchParams.set('confirm', pwd.confirmPassword);
+			searchParams.set('captcha', pwd.captchaImage);
+			searchParams.set('captcha_tk', pwd.captchaToken);
       return this._httpClient.post(requestUrl, searchParams.toString(), {headers: this.defaultHeader}).toPromise();
     } else {
       return Promise.resolve(this.response);
@@ -81,7 +82,7 @@ export class AuthService {
    * 获取安全问题
    */
     getSecurityQuestion(loginname: string): Promise<any> {
-		let requestUrl = this._appconfig.apiAuth + '/admin/auth/getsecurityquestion';	
+		let requestUrl = this._appconfig.apiBase + '/auth/getsecurityquestion';	
 		let searchParams = new URLSearchParams();
 		searchParams.set('loginname', loginname);
 
@@ -93,7 +94,7 @@ export class AuthService {
 	 * @param loginname
 	 */
 	sendResetEmail(loginname: string): Promise<any> {
-		let requestUrl = this._appconfig.apiAuth + '/admin/forgetpassword/sendemail';
+		let requestUrl = this._appconfig.apiBase + '/forgetpassword/sendemail';
 		let searchParams = new URLSearchParams();
 		searchParams.set('loginname', loginname);
 		return this._httpClient.post(requestUrl, searchParams.toString(), {headers: this.defaultHeader}).toPromise();
@@ -102,7 +103,7 @@ export class AuthService {
 	modifyPersonalInfor(postData:any): Observable<any>{
 		let header: HttpHeaders = new HttpHeaders({'Content-Type': 'application/json'});
 		if(tokenNotExpired('jwt')){
-			let requestUrl = this._appconfig.apiAuth + '/user/profile/save';
+			let requestUrl = this._appconfig.apiBase + '/user/profile/save';
 			return this._httpClient.post(requestUrl, JSON.stringify(postData), {headers: header});
 		} else {
 			return new Observable(observer => { observer.next(this.response); observer.complete();});
@@ -112,12 +113,22 @@ export class AuthService {
 	// 上传头像
 	uploadProfilePhoto(img:any): Observable<any>{
 		if(tokenNotExpired('jwt')){
-			let requestUrl = this._appconfig.apiAuth + '/user/profile/avatar/upload';
+			let requestUrl = this._appconfig.apiBase + '/user/profile/avatar/upload';
 			let searchParams = new URLSearchParams();
 			let userId = JSON.parse(localStorage.getItem('user'))['id'];
 			searchParams.set('id', userId);
 			searchParams.set('img', img);
 			return this._httpClient.post(requestUrl, searchParams.toString(), {headers: this.defaultHeader});
+		} else {
+			return new Observable(observer => { observer.next(this.response); observer.complete();});
+		}
+	}
+
+	// 获取验证码
+	getIdentifyingCodeImg(): Observable<any>{
+		if(tokenNotExpired('jwt')){
+			let requestUrl = this._appconfig.apiBase + '/utils/captcha';
+			return this._httpClient.get(requestUrl, {headers: this.defaultHeader});
 		} else {
 			return new Observable(observer => { observer.next(this.response); observer.complete();});
 		}

@@ -32,13 +32,13 @@
         </mat-list-item>
 
         <mat-list-item class="item-custom">
-          <div class="f-left">出生年月</div>
+          <div class="f-left">生日</div>
           <div class="f-right">
             <mat-form-field class="gen-wid">
               <input matInput [max]="maxDate" placeholder="Choose your birthday" [matDatepicker]="picker" 
                      formControlName="birth" [(ngModel)]="personalInfor.birth" (dateChange)="birthChange('change', $event)">
               <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-              <mat-datepicker matDatepicker #picker></mat-datepicker>
+              <mat-datepicker matDatepicker #picker></mat-datepicker> 
               <mat-error>{{birthFormatError}}</mat-error>
             </mat-form-field>
           </div>

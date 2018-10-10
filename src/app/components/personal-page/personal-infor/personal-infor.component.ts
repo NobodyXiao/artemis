@@ -64,7 +64,7 @@ export class PersonalInforComponent implements OnInit, AfterViewChecked{
     this.personalInforForm = this._formBuilder.group({
       'sex': [this.personalInfor.sex],
       // 'hobby':[this.personalInfor.hobby],
-      'birth': { value: this.personalInfor.birth},
+      'birth': [this.personalInfor.birth],
       // 'livePlace': [this.personalInfor.livePlace],
       'profession': [this.personalInfor.profession],
       'nickname': [this.personalInfor.nickname, [Validators.minLength(2)]],
@@ -76,7 +76,11 @@ export class PersonalInforComponent implements OnInit, AfterViewChecked{
       res => {
         this.httpRequestCallbackError = false;
         this.errorData = res;
-        this.hasChanged = !DistinctUntilChangedService.compare(this.personalInfor, this.personalInforOrg);
+        let tempPersonalInfor = Object.assign({},this.personalInfor);
+        let tempPersonalInforOrg = Object.assign({},this.personalInforOrg);
+        tempPersonalInfor.birth = new Date(tempPersonalInfor.birth).getTime();
+        tempPersonalInforOrg.birth = new Date(tempPersonalInforOrg.birth).getTime();
+        this.hasChanged = !DistinctUntilChangedService.compare(tempPersonalInfor, tempPersonalInforOrg);
       },
       err => {
         this._dialogService.alert('Error', err).subscribe();

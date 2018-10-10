@@ -74,7 +74,7 @@ export class LoginComponent implements OnInit {
 
     // 构建注册Form
     this.registerForm = this._formBuilder.group({
-      'username': ['', [Validators.required, Validators.minLength(6), Validators.maxLength(60)]],
+      'username': ['', [Validators.required, Validators.minLength(6), Validators.maxLength(30)]],
       'email': ['', [Validators.required, Validators.minLength(6), Validators.maxLength(60), ValidationService.emailValidator]],
       'password': ['', [Validators.required, Validators.minLength(8), Validators.maxLength(32)]],
     });

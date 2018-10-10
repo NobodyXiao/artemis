@@ -7,13 +7,13 @@
   border-bottom: 1px solid #e5e5e5; 
   padding: 10px 0;
   position:relative;
+  cursor: pointer;
 }
 .img-box{
   min-width: 158px;
   height:auto;
   margin-right: 13px;
   float: left;
-  cursor: pointer;
 }
 .img-box img{
   width:158px;
@@ -24,7 +24,6 @@
   width:calc(100% - 171px);
   height:auto;
   margin-left:171px;
-  cursor: pointer;
 }
 .text-box>.instruction{
   max-height: 48px;
@@ -110,7 +109,7 @@ subinfo-box-right:not(3){
   .subinfo-box{
     margin:0;
   }
-  .title{
+  .instruction{
     display:none!important;
   }
 }

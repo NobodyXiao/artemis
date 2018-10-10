@@ -30,11 +30,13 @@ export class AppNavigationService {
   turnDetailPage(): Observable<any> {
     let requestUrl = this._appconfig.apiArticleDetail;
     let searchParams = new URLSearchParams();
-    var type = localStorage.getItem('detailType');
-    var rpath = localStorage.getItem('detailPath');
+    let type = localStorage.getItem('detailType');
+    let rpath = localStorage.getItem('detailPath');
+    let articelId = localStorage.getItem('articleId');
 
     searchParams.set('type', type || "md");
     searchParams.set('path', rpath || '');
+    searchParams.set('uuid', articelId || '');
     return this._authHttp.post(requestUrl, searchParams.toString(), { 
       headers: this.header,
       withCredentials: true,

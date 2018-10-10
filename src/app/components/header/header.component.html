@@ -19,7 +19,7 @@
     <a href="javascript:void(0);">
       <img [src]="userAvatar" alt="userAvatar" style="border-radius:20px;">
     </a>
-    <span style="color:#fff;" *ngIf="isLogin">{{userName}}</span>
+    <span style="color:#fff;max-width: 50px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;" *ngIf="isLogin">{{userName}}</span>
     <span style="color:#fff;" *ngIf="!isLogin" (click)="onLogin()">Login</span>
     <div class="setting-block" *ngIf="isLogin">
       <div (click)="routerToProfilePage()">个人信息</div>
